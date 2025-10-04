@@ -136,7 +136,7 @@
     function searchRoll() {
       let course = document.getElementById("course").value;
       let roll = document.getElementById("rollNo").value.trim();
-      
+
       if(course === "") {
         alert("⚠️ Please select a course!");
         return;
@@ -145,16 +145,24 @@
         alert("⚠️ Please enter Roll Number!");
         return;
       }
-      alert("🔍 Searching...\nCourse: " + course + "\nRoll No: " + roll);
+
+      // Open new page and pass params via query string
+      const url = 'log.html'
+        // + '?course=' + encodeURIComponent(course)
+        // + '?course=' + encodeURIComponent(course)
+        + '?roll=' + encodeURIComponent(roll);
+
+      // Open in new tab/window
+      window.open(url, '_blank');
     }
 
     function loginNow() {
       alert("🔑 Login Page Opening...");
-      // yaha login page open kar sakte ho (window.location.href = "login.html";)
+      // window.location.href = "login.html";
     }
 
     function callCentre() {
-      window.location.href = "tel:+919999999999"; // apna centre number daal do
+      window.location.href = "tel:+919852875207";
     }
   </script>
 
