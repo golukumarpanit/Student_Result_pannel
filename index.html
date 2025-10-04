@@ -4,105 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Student Search Panel</title>
+  <link rel="stylesheet" href="index.css">
+  <script src="index.js"></script>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: "Poppins", sans-serif;
-    }
-
-    body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      background: linear-gradient(135deg, #667eea, #764ba2);
-      padding: 20px;
-    }
-
-    .panel {
-      width: 400px;
-      background: #fff;
-      padding: 30px;
-      border-radius: 18px;
-      box-shadow: 0px 10px 25px rgba(0,0,0,0.2);
-      text-align: center;
-    }
-
-    .panel h2 {
-      margin-bottom: 20px;
-      color: #333;
-    }
-
-    .input-box {
-      margin-bottom: 18px;
-      text-align: left;
-    }
-
-    .input-box label {
-      font-size: 14px;
-      font-weight: 600;
-      color: #444;
-      display: block;
-      margin-bottom: 6px;
-    }
-
-    .input-box input, .input-box select {
-      width: 100%;
-      padding: 12px 15px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-      outline: none;
-      font-size: 15px;
-      transition: 0.3s;
-    }
-
-    .input-box input:focus, .input-box select:focus {
-      border-color: #667eea;
-      box-shadow: 0 0 8px rgba(102,126,234,0.4);
-    }
-
-    .btn {
-      width: 100%;
-      padding: 12px;
-      margin-top: 10px;
-      border: none;
-      border-radius: 8px;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: 0.3s;
-      color: #fff;
-    }
-
-    .search-btn {
-      background: linear-gradient(135deg, #11998e, #38ef7d);
-    }
-    .search-btn:hover {
-      background: linear-gradient(135deg, #0e8d82, #2fd46e);
-    }
-
-    .login-btn {
-      background: linear-gradient(135deg, #667eea, #764ba2);
-    }
-    .login-btn:hover {
-      background: linear-gradient(135deg, #5a67d8, #6b46c1);
-    }
-
-    .call-btn {
-      background: linear-gradient(135deg, #ff512f, #dd2476);
-    }
-    .call-btn:hover {
-      background: linear-gradient(135deg, #e04828, #c9185f);
-    }
-
-    @media (max-width: 480px) {
-      .panel {
-        width: 95%;
-        padding: 20px;
-      }
-    }
+    
   </style>
 </head>
 <body>
@@ -115,12 +20,20 @@
       <select id="course">
         <option value="">-- Choose Course --</option>
         <option value="adca">ADCA</option>
-        <option value="typing2024">Typing 2024</option>
-        <option value="typing2023">Typing 2023</option>
-      </select>
-      
+        <option value="typing2024">TYPING</option>
+        
+      </select>      
     </div>
     
+    <div class="input-box">
+      <label for="YEAR">Select Session</label>
+      <select id="Session">
+        <option value="">-- Choose Year --</option>
+        <option value="2024">2024</option>
+        <option value="2023">2023</option>
+        
+      </select>      
+    </div>
 
     <div class="input-box">
       <label for="rollNo">Enter Roll Number</label>
@@ -133,37 +46,7 @@
   </div>
 
   <script>
-    function searchRoll() {
-      let course = document.getElementById("course").value;
-      let roll = document.getElementById("rollNo").value.trim();
-
-      if(course === "") {
-        alert("⚠️ Please select a course!");
-        return;
-      }
-      if(roll === "") {
-        alert("⚠️ Please enter Roll Number!");
-        return;
-      }
-
-      // Open new page and pass params via query string
-      const url = 'log.html'
-        // + '?course=' + encodeURIComponent(course)
-        // + '?course=' + encodeURIComponent(course)
-        + '?roll=' + encodeURIComponent(roll);
-
-      // Open in new tab/window
-      window.open(url, '_blank');
-    }
-
-    function loginNow() {
-      alert("🔑 Login Page Opening...");
-      // window.location.href = "login.html";
-    }
-
-    function callCentre() {
-      window.location.href = "tel:+919852875207";
-    }
+    
   </script>
 
 </body>
