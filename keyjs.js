@@ -53,18 +53,27 @@ if (rollNumber) {
 /* ---------------------------------
    Data को HTML में दिखाने का function
 -----------------------------------*/
+/* ---------------------------------
+   Data को HTML में दिखाने का function
+-----------------------------------*/
 function displayCertificate(fields) {
-    // Text fields set करना
+    // सबसे पहले course check करो
+    let adcacourse = fields.SELECT_COURSE || "CHELA";
+
+    if (adcacourse.toLowerCase() !== "advance diploma in computer application") {
+        alert("❌ This certificate is only for Advance Diploma in Computer Application!");
+        return; // यहीं रुक जाएगा, आगे का code नहीं चलेगा
+    }
+
+    // अगर सही course है तभी आगे data दिखाओ
     document.getElementById("qrc").innerText = fields.Ms_Nub || "N/A";
     document.getElementById("RollNubid").innerText = fields.ROLL_NUB || "N/A";
     document.getElementById("DOBfatch").innerText = fields.DOB || "N/A";
     document.getElementById("studentName").innerText = fields.NAME || "N/A";
     document.getElementById("fatherName").innerText = fields.FATHERS_NAME || "N/A";
 
-    // Course selection code
-    let adcacourse = fields.SELECT_COURSE || "CHELA";
+    // Duration सेट करना
     let duration = "Duration";
-
     switch (adcacourse.toLowerCase()) {
         case "advance diploma in computer application":
             duration = "twelve";
@@ -79,21 +88,6 @@ function displayCertificate(fields) {
     document.getElementById("courseName").innerText = adcacourse;
     document.getElementById("selectedDuration").innerText = duration;
     document.getElementById("studentIssueDate").innerText = fields.ISSUE_DATE || "N/A";
-
-    // PHOTO लोड करना
-    const preview = document.getElementById('previewImage');
-    const cropped = document.getElementById('croppedImage');
-
-    if (fields.Photo && Array.isArray(fields.Photo) && fields.Photo.length > 0) {
-        const photoURL = fields.Photo[0].url; // Airtable attachment का URL
-        preview.src = photoURL;
-        cropped.src = photoURL;
-        preview.style.display = "block";
-        cropped.style.display = "block";
-    } else {
-        preview.style.display = "none";
-        cropped.style.display = "none";
-    }
 }
 /* --------------------------
    Page load → fetch record
@@ -159,50 +153,7 @@ if (rollNumber) {
 // -------------------------------
 
 
-    fetchPhoto();
-    async function fetchPhoto() {
-      const message = document.getElementById("message");
-      const photoElement = document.getElementById("croppedImage");
 
-      try {
-        // Airtable से data fetch करना
-        const response = await fetch(
-          `https://api.airtable.com/v0/${BASE_ID}/${TABLE_NAME}?filterByFormula={ROLL_NUB}="${rollNumber}"`, 
-          {
-            headers: { Authorization: `Bearer ${API_KEY}` }
-          }
-        );
-
-        const data = await response.json();
-        console.log("Airtable Response:", data);
-
-        if (data.records.length > 0) {
-          const fields = data.records[0].fields;
-
-          if (fields.photo && Array.isArray(fields.photo) && fields.photo.length > 0) {
-            console.log("Photo URL Found:", fields.photo[0].url);
-            photoElement.src = fields.photo[0].url;
-            photoElement.style.display = "block";
-            message.innerText = "Photo Loaded Successfully!";
-          } else {
-            console.log("No Photo Found, showing default image");
-            photoElement.src = "default-photo.png";
-            photoElement.style.display = "block";
-            message.innerText = "No Photo Found (Showing Default)";
-          }
-        } else {
-          console.log("No record found for this roll number");
-          message.innerText = "No Record Found for Roll: " + rollNumber;
-          photoElement.style.display = "none";
-        }
-      } catch (error) {
-        console.error("Error fetching photo:", error);
-        message.innerText = "Error fetching data!";
-        photoElement.style.display = "none";
-      }
-    }
-
-    fetchPhoto();
 
     // yha se title and roll number update krna hai
     function displayCertificatell(fields) {
