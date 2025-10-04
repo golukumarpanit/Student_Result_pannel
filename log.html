@@ -30,119 +30,118 @@
 </html>
 <body>  
         
-    <div class="preview-container">
-        <div class="first-page">             
-            <div class="preview" id="preview1">                
-                <div class="search-box">
-                    <input type="text" id="idInput" placeholder="Enter Roll Nub ">
-                    <button class="thakur" onclick="searchCertificate()">Search</button>                                      
-                </div>                 
-                
-                
-                <h2 style="text-align: center;">ADCA Certificate Data 2024</h2>
-                <div id="message">Please Wait...</div> 
-                        <div class="form-container">                             
+                        <!-- <div class="preview-container">
+                            <div class="first-page">             
+                                <div class="preview" id="preview1">                
+                                    <div class="search-box">
+                                        <input type="text" id="idInput" placeholder="Enter Roll Nub ">
+                                        <button class="thakur" onclick="searchCertificate()">Search</button>                                      
+                                    </div>                 
+                                    
+                                    
+                                    <h2 style="text-align: center;">ADCA Certificate Data 2024</h2>
+                                    <div id="message">Please Wait...</div> 
+                                            <div class="form-container">                             
 
-                            <img id="previewImage" src="#" alt="previewImage">
-                                                 
-                        </div>
-                    <!--yaha tak hai ye code-->
-                <form id="textInputForm">                                       
-                    <div class="akashpandey">
-                        <div class="ekmedekhanahai1">
-                            <label for="msNoInput">Certificate Nub:</label>
-                            <p class="somethingnew" class="text-xl uppercase ele"> <span id="qhrc"></span></p>
-                            
-                            
-                        </div>
-                        <div class="ekmedekhanahai1">
-                            <label for="rollinput">Roll Number:</label>
-                            <p class="somethingnew" class="text-xl uppercase ele"> <span id="roll2"></span></p>
-                        </div>                    
+                                                <img id="previewImage" src="#" alt="previewImage">
+                                                                    
+                                            </div>
+                                        
+                                    <form id="textInputForm">                                       
+                                        <div class="akashpandey">
+                                            <div class="ekmedekhanahai1">
+                                                <label for="msNoInput">Certificate Nub:</label>
+                                                <p class="somethingnew" class="text-xl uppercase ele"> <span id="qhrc"></span></p>
+                                                
+                                                
+                                            </div>
+                                            <div class="ekmedekhanahai1">
+                                                <label for="rollinput">Roll Number:</label>
+                                                <p class="somethingnew" class="text-xl uppercase ele"> <span id="roll2"></span></p>
+                                            </div>                    
 
-                            
-                        <div class="ekmedekhanahai1">
-                            <label for="dobInput">DOB(DD-MM-YY):</label>
-                            <p class="somethingnew" class="text-xl uppercase ele"> <span id="dob2"></span></p>
-                        </div>                                                       
+                                                
+                                            <div class="ekmedekhanahai1">
+                                                <label for="dobInput">DOB(DD-MM-YY):</label>
+                                                <p class="somethingnew" class="text-xl uppercase ele"> <span id="dob2"></span></p>
+                                            </div>                                                       
+                                            
+                                        </div> 
+                                        <div class="akashpandey">              
+                                            <div class="ekmedekhanahai1">        
+                                                <label for="nameInput">NAME:</label>
+                                                <p class="somethingnew" class="text-xl uppercase ele"> <span id="nameInput"></span></p>
+                                            </div>  
+                                            <div class="ekmedekhanahai1">
+                                                <label for="fatherNameInput">FATHER'S NAME:</label>                            
+                                                <p class="somethingnew" class="text-xl uppercase ele"> <span id="fatherNameInput"></span></p>
+                                            </div> 
+                                        </div> 
+
+
+                                        <div class="akashpandey">
+                                            <div class="ekmedekhanahai1">
+                                                <label for="Photourl">PHOTO URL:</label>                            
+                                                <p class="somethingnew" class="text-xl uppercase ele"> <span id="Photourl2"></span></p>
+                                            </div>                           
+
+                                        </div>                    
+                                            
+                                        <div class="akashpandey"> 
+                                     
+                                            <div class="ekmedekhanahai1">
+                                                <label for="courses">COURSE NAME   </label>
+                                                <p class="somethingnew" class="text-xl uppercase ele"> <span id="courseName1"> </span></p>  
+                                                
+                                            </div>  
+                                            
+                                        </div>
+                                        <div class="akashpandey"> 
+                                           
+                                                
+                                                <div class="ekmedekhanahai1">
+                                                    <label for="durationSelect">Duration:</label>
+                                                    <p class="somethingnew" class="text-xl uppercase ele"> <span id="durationSelect"> </span></p> 
+                                                    
+                                                </div>
+                                            </div>
+                                        
+                                        <div class="akashpandey">
+                                            <div class="ekmedekhanahai1">              
+                                                <label for="examHeldOn">Exam Held On :</label>
+                                                <select id="examHeldOn" name="examHeldOn" onchange="generateQRCode()">                            
+                                                    <option value="February 2024">February 2024</option>
+                                                </select>
+                                            </div> 
+                                            <div class="ekmedekhanahai1">              
+                                                <label for="grade5">Grade :</label>
+                                                <select id="examHeldOn" name="examHeldOn" onchange="generateQRCode()">                            
+                                                <option value="FebruaryH2024">Excellent</option>
+                                                </select>
+                                            </div>              
+                                            <div class="ekmedekhanahai1">
+                                                <label for="session">Date Of Issue:</label>
+                                                <select id="session" name="session" oninput="generateQRCode()">                              
+                                                    <option value="20-02-2024">20-02-2024</option>                           
+                                                </select>
+                                            </div>
+                                        </div>                  
+                                            <div class="ekmedekhanahai1">
+                                            <div class="akashpandey">                      
+                                                    <button class="buttonlgado" onclick="rotateLeft()">Rotate Left</button>
+                                                    <button class="buttonlgado" onclick="rotateRight()">Rotate Right</button>                  
+                                            </div> 
+                                </div>              
+                    <div class="modal-content"> 
                         
-                    </div> 
-                    <div class="akashpandey">              
-                        <div class="ekmedekhanahai1">        
-                            <label for="nameInput">NAME:</label>
-                            <p class="somethingnew" class="text-xl uppercase ele"> <span id="nameInput"></span></p>
-                        </div>  
-                        <div class="ekmedekhanahai1">
-                            <label for="fatherNameInput">FATHER'S NAME:</label>                            
-                            <p class="somethingnew" class="text-xl uppercase ele"> <span id="fatherNameInput"></span></p>
-                        </div> 
-                    </div> 
-
-
-                    <div class="akashpandey">
-                        <div class="ekmedekhanahai1">
-                            <label for="Photourl">PHOTO URL:</label>                            
-                            <p class="somethingnew" class="text-xl uppercase ele"> <span id="Photourl2"></span></p>
-                        </div>                           
-
-                    </div>                    
-                        
-                    <div class="akashpandey"> 
-                    <!--course ke liye ek new selection create krna hai -->
-                        <div class="ekmedekhanahai1">
-                            <label for="courses">COURSE NAME   </label>
-                            <p class="somethingnew" class="text-xl uppercase ele"> <span id="courseName1"> </span></p>  
-                            
-                        </div>  
-                        
-                    </div>
-                    <div class="akashpandey"> 
-                        <!--course ke liye ek new selection create krna hai -->
-                            
-                            <div class="ekmedekhanahai1">
-                                <label for="durationSelect">Duration:</label>
-                                <p class="somethingnew" class="text-xl uppercase ele"> <span id="durationSelect"> </span></p> 
+                                                        
+                                    </form>              
                                 
+                                            
+                                             
+                                </div>           
                             </div>
-                        </div>
-                    <!--aisa kro ki change na ho aisa kaise hoga iska rashata nikala hai -->
-                    <div class="akashpandey">
-                        <div class="ekmedekhanahai1">              
-                            <label for="examHeldOn">Exam Held On :</label>
-                            <select id="examHeldOn" name="examHeldOn" onchange="generateQRCode()">                            
-                                <option value="February 2024">February 2024</option>
-                            </select>
-                        </div> 
-                        <div class="ekmedekhanahai1">              
-                            <label for="grade5">Grade :</label>
-                            <select id="examHeldOn" name="examHeldOn" onchange="generateQRCode()">                            
-                            <option value="FebruaryH2024">Excellent</option>
-                            </select>
-                        </div>              
-                        <div class="ekmedekhanahai1">
-                            <label for="session">Date Of Issue:</label>
-                            <select id="session" name="session" oninput="generateQRCode()">                              
-                                <option value="20-02-2024">20-02-2024</option>                           
-                            </select>
-                        </div>
-                    </div>                  
-                        <div class="ekmedekhanahai1">
-                        <div class="akashpandey">                      
-                                <button class="buttonlgado" onclick="rotateLeft()">Rotate Left</button>
-                                <button class="buttonlgado" onclick="rotateRight()">Rotate Right</button>                  
-                        </div> 
-            </div>              
-<div class="modal-content"> 
-    <!-- iskoremove nhi kr sakte     -->
-                        
-                                      
-                </form>              
-                <!-- Uploaded Image -->
-                        
-                <!--yaha se photocropper ka code hai-->          
-            </div>           
-        </div>
-    </div>  
+                        </div>   -->
     <!-- Preview 2 -->
     <!DOCTYPE html>
     <html lang="en">
@@ -340,7 +339,7 @@
           if (fields.photo && Array.isArray(fields.photo) && fields.photo.length > 0) {
             console.log("Photo URL Found:", fields.photo[0].url);
             photoElement.src = fields.photo[0].url;
-            photopreview.src = fields.photo[0].url;
+            // photopreview.src = fields.photo[0].url;
             photoElement.style.display = "block";
             message.innerText = "Photo Loaded Successfully!";
           } else {
