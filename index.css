@@ -20,10 +20,11 @@
       justify-items: center;
       justify-content: center;
       align-items: center;
+      margin: 0;
       
     }
     .buttom{
-      font-size: 10pt;
+      font-size: 12pt;
       margin: 10px;
       color: white;
       font-weight: bold;       /* <-- semicolon लगाया */
@@ -34,10 +35,10 @@
     .context{
       font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
       font-weight: bold;
-      font-size: 20px;
-      margin-bottom: 10PX;
-      margin-top: 10px;
-      color: rgb(58, 4, 59);
+      font-size: 16pt;
+      margin-bottom: 20PX;
+      margin-top: 20px;
+      color: #5d18a2;
       
     }
 
@@ -53,6 +54,7 @@
 
     .panel {
       width: 400px;
+      
       background: white;
       margin-top: 40px;
       padding: 30px;      
@@ -139,7 +141,7 @@
 .context__inner {
   display: inline-block;
   white-space: nowrap;        /* टेक्स्ट ब्रेक न हो */
-  animation: scroll-left 4s linear infinite; /* continuous left scroll */
+  animation: scroll-left 1s linear infinite; /* continuous left scroll */
   
 }
 .swag{
