@@ -4,13 +4,32 @@
       box-sizing: border-box;
       font-family: "Poppins", sans-serif;
     }
+    .header{
+      display: flex;
+      width: 100%;
+      height: 50PX;
+      background-color: white;
+      margin-bottom: 10px;
+      
+    }
+    .allbutton{
+      width: 100%;
+      display: flex;
+      justify-items: center;
+      justify-content: center;
+      
+    }
+    .buttom{
+      width: 100px;
+    }
 
     body {
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
       min-height: 100vh;
-      background: linear-gradient(135deg, #667eea, #764ba2);
+      background: RGB(89, 26, 155);
       padding: 20px;
     }
 
