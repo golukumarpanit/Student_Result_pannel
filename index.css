@@ -8,8 +8,9 @@
       display: flex;
       width: 100%;
       height: 40PX;
-      background-color: rgb(58, 4, 59);
+      background-color: #5d18a2;
       margin-bottom: 10px;
+      align-items: center;
       margin: 0;
       
     }
@@ -33,8 +34,11 @@
     .context{
       font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
       font-weight: bold;
+      font-size: 20px;
       margin-bottom: 10PX;
+      margin-top: 10px;
       color: rgb(58, 4, 59);
+      
     }
 
 
@@ -135,7 +139,7 @@
 .context__inner {
   display: inline-block;
   white-space: nowrap;        /* टेक्स्ट ब्रेक न हो */
-  animation: scroll-left 5s linear infinite; /* continuous left scroll */
+  animation: scroll-left 4s linear infinite; /* continuous left scroll */
   
 }
 .swag{
