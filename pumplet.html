@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <title>Left Banner Photo Replace</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css" rel="stylesheet"/>
+  <style>
+    body {background: #eee; padding: 20px;}
+    .banner-container {
+        position: relative; 
+        width: 1000px; 
+        max-width: 100%; 
+        /* margin: auto; */
+        justify-items: left;
+    }
+    #main-banner {width: 100%; display: block;}
+    #left-photo {
+        position: absolute; 
+        left: 5px; 
+        top: 330px; 
+        width: 180px; 
+        height: 230px; 
+        border-radius: 5px; 
+        object-fit: cover; 
+        border: 2px solid #fff;
+    }
+    #preview-img, #crop-area {display: none;}
+    #upload-box {margin: 20px 0;}
+    #download-btn {display: none; margin:10px 0;}
+  </style>
+</head>
+<body>
+  <h2>Left Photo Replace & Crop Demo</h2>
+  <div id="upload-box">
+    <input type="file" id="img-upload" accept="image/*">
+    <button id="crop-btn" style="display:none;">क्रॉप करें</button>
+    <button id="apply-btn" style="display:none;">बैनर में लगाएं</button>
+    <button id="download-btn">इमेज डाउनलोड करें</button>
+  </div>
+  
+  <img id="preview-img"/>
+  <br>
+  
+  <div class="banner-container">
+    <!-- Ye aapki banner image hai: Use server pe rakh sakte hain -->
+    <img src="Untitled-1.jpg" id="main-banner">
+    <!-- Left side ki photo yahan show hogi -->
+    <img id="left-photo" src="https://via.placeholder.com/230x270.png?text=Upload+Photo">
+  </div>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
+  <script>
+    let cropper;
+    let croppedImageDataUrl = null;
+    const imgUpload = document.getElementById('img-upload');
+    const previewImg = document.getElementById('preview-img');
+    const cropBtn = document.getElementById('crop-btn');
+    const applyBtn = document.getElementById('apply-btn');
+    const leftPhoto = document.getElementById('left-photo');
+    const downloadBtn = document.getElementById('download-btn');
+    downloadBtn.style.display = 'none';
+
+    imgUpload.addEventListener('change', function(e) {
+      const file = e.target.files[0];
+      if(file){
+        previewImg.src = URL.createObjectURL(file);
+        previewImg.style.display = 'block';
+        previewImg.style.maxWidth = '400px';
+        cropBtn.style.display = 'inline-block';
+
+        if(cropper) cropper.destroy();
+        cropper = new Cropper(previewImg, {
+          aspectRatio: 180/230,
+          viewMode: 1
+        });
+      }
+    });
+
+    cropBtn.addEventListener('click', function() {
+      if(cropper){
+        const canvas = cropper.getCroppedCanvas({width:180, height:230});
+        croppedImageDataUrl = canvas.toDataURL();
+        previewImg.src = croppedImageDataUrl;
+        applyBtn.style.display = 'inline-block';
+        downloadBtn.style.display = 'inline-block'; // Show download button after crop
+      }
+    });
+
+    applyBtn.addEventListener('click', function() {
+      leftPhoto.src = previewImg.src;
+      previewImg.style.display = 'none';
+      cropBtn.style.display = 'none';
+      applyBtn.style.display = 'none';
+      imgUpload.value = "";
+      // Optionally hide download if you want only at preview time
+    });
+
+    downloadBtn.addEventListener('click', function() {
+      if (croppedImageDataUrl) {
+        const link = document.createElement('a');
+        link.href = croppedImageDataUrl;
+        link.download = "cropped_photo.png";
+        link.click();
+      }
+    });
+  </script>
+</body>
+</html>
