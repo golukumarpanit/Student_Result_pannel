@@ -19,7 +19,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/cropperjs/dist/cropper.min.css" rel="stylesheet">
     <link rel="stylesheet" href="Tying.css"> 
-    <script src="airtable.js"></script>  
+    <!-- <script src="airtable.js"></script>   -->
+     <script src="test.js"></script>
   
 
     <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.1/build/qrcode.min.js"></script>
@@ -27,118 +28,9 @@
 </head>
 </html>
 <body>  
-    
+    <div id="errorMsg"></div>
     <div class="preview-container">
-        <!-- <div class="first-page">             
-            <div class="preview" id="preview1">                
-                <div class="search-box">
-                    <input type="text" id="idInput" placeholder="Enter Roll Nub ">
-                    <button class="thakur" onclick="searchCertificate()">Search</button>                                      
-                </div>                 
-                <div id="message" class="loading"></div>  
-                
-                <h2 style="text-align: center;">ADCA Certificate Data 2024</h2>
-                        <div class="form-container">                      
-                            <img id="previewImage" src="#" alt="previewImage">                      
-                        </div>
-                   
-                <form id="textInputForm">                                       
-                    <div class="akashpandey">
-                        <div class="ekmedekhanahai1">
-                            <label for="msNoInput">Certificate Nub:</label>
-                            <p class="somethingnew" class="text-xl uppercase ele"> <span id="qhrc">Radhe</span></p>
-                            
-                            
-                        </div>
-                        <div class="ekmedekhanahai1">
-                            <label for="rollinput">Roll Number:</label>
-                            <p class="somethingnew" class="text-xl uppercase ele"> <span id="roll2"></span></p>
-                        </div>                    
-
-                            
-                        <div class="ekmedekhanahai1">
-                            <label for="dobInput">DOB(DD-MM-YY):</label>
-                            <p class="somethingnew" class="text-xl uppercase ele"> <span id="dob2"></span></p>
-                        </div>                                                       
-                        
-                    </div> 
-                    <div class="akashpandey">              
-                        <div class="ekmedekhanahai1">        
-                            <label for="nameInput">NAME:</label>
-                            <p class="somethingnew" class="text-xl uppercase ele"> <span id="nameInput"></span></p>
-                        </div>  
-                        <div class="ekmedekhanahai1">
-                            <label for="fatherNameInput">FATHER'S NAME:</label>                            
-                            <p class="somethingnew" class="text-xl uppercase ele"> <span id="fatherNameInput"></span></p>
-                        </div> 
-                    </div> 
-
-
-                    <div class="akashpandey">
-                        <div class="ekmedekhanahai1">
-                            <label for="Photourl">PHOTO URL:</label>                            
-                            <p class="somethingnew" class="text-xl uppercase ele"> <span id="Photourl2"></span></p>
-                        </div>                           
-
-                    </div>                    
-                        
-                    <div class="akashpandey"> 
-                    
-                        <div class="ekmedekhanahai1">
-                            <label for="courses">COURSE NAME   </label>
-                            <p class="somethingnew" class="text-xl uppercase ele"> <span id="courseName1"> </span></p>  
-                            
-                        </div>  
-                        
-                    </div>
-                    <div class="akashpandey"> 
-                        
-                            
-                            <div class="ekmedekhanahai1">
-                                <label for="durationSelect">Duration:</label>
-                                <p class="somethingnew" class="text-xl uppercase ele"> <span id="durationSelect"> </span></p> 
-                                
-                            </div>
-                        </div>
-                    
-                    <div class="akashpandey">
-                        <div class="ekmedekhanahai1">              
-                            <label for="examHeldOn">Exam Held On :</label>
-                            <select id="examHeldOn" name="examHeldOn" onchange="generateQRCode()">                            
-                                <option value="February 2024">February 2024</option>
-                            </select>
-                        </div> 
-                        <div class="ekmedekhanahai1">              
-                            <label for="grade5">Grade :</label>
-                            <select id="examHeldOn" name="examHeldOn" onchange="generateQRCode()">                            
-                            <option value="FebruaryH2024">Excellent</option>
-                            </select>
-                        </div>              
-                        <div class="ekmedekhanahai1">
-                            <label for="session">Date Of Issue:</label>
-                            <select id="session" name="session" oninput="generateQRCode()">                              
-                                <option value="20-02-2024">20-02-2024</option>                           
-                            </select>
-                        </div>
-                    </div>                  
-                        <div class="ekmedekhanahai1">
-                        <div class="akashpandey">                      
-                                <button class="buttonlgado" onclick="rotateLeft()">Rotate Left</button>
-                                <button class="buttonlgado" onclick="rotateRight()">Rotate Right</button>                  
-                        </div> 
-            </div>              
-<div class="modal-content"> 
-    
-                        
-                                      
-                </form>              
-                
-                        
-                          
-            </div>           
-        </div>
-    </div>   -->
-    <!-- Preview 2 -->
+        
     <!DOCTYPE html>
     <html lang="en">
     <head>
@@ -312,11 +204,9 @@
 
 
 
-<script>
-    
+<script> 
 
-    // URL से roll number निकालना
-    
+    // URL से roll number निकालना 
 
     async function fetchPhoto() {
       const message = document.getElementById("message");
@@ -369,7 +259,7 @@
     }
 
     fetchPhoto();
-  </script>
+</script>
 
     
 </body>
