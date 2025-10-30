@@ -55,17 +55,17 @@
       align-items: center;
     }
     .internub {
-  width: 100%;
-  position: absolute;
-  left: 30px;
-  top: 480px;
-  font-family: 'Montserrat', Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-  font-size: 40px;
-  font-weight: 700; /* मोटा फॉन्ट */
-  color: black;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    width: 100%;
+    position: absolute;
+    left: 30px;
+    top: 475px;
+    font-family: 'Montserrat', Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 40px;
+    font-weight: 700; /* मोटा फॉन्ट */
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
     .radhe{
@@ -154,53 +154,60 @@
       imgUpload.value = "";
     });
 
-    downloadBtn.addEventListener("click", () => {
-      if (!croppedImageDataUrl) return;
+    // FontFace लोड करें
+const loadMont = new FontFace(
+    'Montserrat',
+    'url(https://fonts.gstatic.com/s/montserrat/v26/JTUQjIg1_i6t8kCHKm45_Qphzf7z.woff2)', // Google Fonts का WOFF2 लिंक
+    { weight: '700', style: 'normal' }
+);
 
-      const mainBanner = document.getElementById("main-banner");
-      const bannerContainer = document.querySelector(".banner-container");
+loadMont.load().then(function(loadedFont) {
+    document.fonts.add(loadedFont);
+    // अब फॉन्ट डाउनलोड हो चुका है और Canvas यूज़ कर सकता है
+});
 
-      const canvas = document.createElement("canvas");
-      canvas.width = mainBanner.naturalWidth;
-      canvas.height = mainBanner.naturalHeight;
-      const ctx = canvas.getContext("2d");
+// अब downloadBtn के click event में यह प्रैक्टिकल use करें
+downloadBtn.addEventListener("click", async () => {
+    if (!croppedImageDataUrl) return;
 
-      ctx.drawImage(mainBanner, 0, 0, canvas.width, canvas.height);
+    // "Montserrat" को apply करने से पहले ensure करें कि font लोड हो गया है
+    await document.fonts.ready;
 
-      const croppedImg = new Image();
-      croppedImg.onload = () => {
+    // ...बाकी कोड same रहे...
+    const mainBanner = document.getElementById("main-banner");
+    const bannerContainer = document.querySelector(".banner-container");
+    const canvas = document.createElement("canvas");
+    canvas.width = mainBanner.naturalWidth;
+    canvas.height = mainBanner.naturalHeight;
+    const ctx = canvas.getContext("2d");
+    ctx.drawImage(mainBanner, 0, 0, canvas.width, canvas.height);
+
+    const croppedImg = new Image();
+    croppedImg.onload = () => {
         const scaleX = canvas.width / bannerContainer.clientWidth;
         const scaleY = canvas.height / bannerContainer.clientHeight;
-
         const posX = leftPhoto.offsetLeft * scaleX;
         const posY = leftPhoto.offsetTop * scaleY;
         const width = leftPhoto.clientWidth * scaleX;
         const height = leftPhoto.clientHeight * scaleY;
-
         ctx.drawImage(croppedImg, posX, posY, width, height);
 
-        // टेक्स्ट की पोजिशनिंग जो .internub के जैसी हो
-        const textX = 300 * scaleX + 150 * scaleX; // टेक्स्ट का horizontal पोजीशन (centered)
-        const textY = 475 * scaleY + 40 * scaleY * 0.75; // टेक्स्ट का vertical position
-
-        // टेक्स्ट baseline को नीचे सेट कर रहे हैं ताकि टेक्स्ट नीचे दिखे
-        ctx.textBaseline = "bottom"; // यहां से टेक्स्ट का नीचे की तरफ baseline सेट होता है
-
-        ctx.font = "40px Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif";
+        // अब Canvas текст में Montserrat bold इस्तेमाल करें
+        ctx.font = "700 40px Montserrat, Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif";
         ctx.fillStyle = "black";
         ctx.textAlign = "center";
-
-        ctx.fillText(krishnaSpan.textContent, textX, textY);
+        ctx.textBaseline = "bottom";
+        ctx.fillText(krishnaSpan.textContent, 300 * scaleX + 150 * scaleX, 475 * scaleY + 40 * scaleY * 0.75);
 
         const finalImageUrl = canvas.toDataURL("image/png");
-
         const link = document.createElement("a");
         link.href = finalImageUrl;
         link.download = "banner_with_cropped_image.png";
         link.click();
-      };
-      croppedImg.src = croppedImageDataUrl;
-    });
+    };
+    croppedImg.src = croppedImageDataUrl;
+});
+
   </script>
 </body>
 </html>
