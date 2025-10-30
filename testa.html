@@ -1,62 +1,98 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<style>
-/* Container */
-.context {
-  width: 100%;
-  overflow: hidden;           /* बाहर जाने वाले हिस्से छिपें */
-  background: #f0f0f0;       /* optional background */
-  padding: 8px 0;
-  box-sizing: border-box;
-  font-weight: 700;
-  font-size: 18px;
-}
-
-/* Inner scrolling text */
-.context__inner {
-  display: inline-block;
-  white-space: nowrap;        /* टेक्स्ट ब्रेक न हो */
-  animation: scroll-left 12s linear infinite; /* continuous left scroll */
-}
-
-/* Duplicate text for seamless repeat */
-.context__inner span {
-  margin-right: 50px;         /* text spacing */
-}
-
-/* Keyframes for leftward scroll */
-@keyframes scroll-left {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); } /* half width shift because duplicated */
-}
-
-/* Responsive adjustments */
-@media (max-width: 480px) {
-  .context {
-    font-size: 16px;
-  }
-  .context__inner {
-    animation-duration: 10s;
-  }
-}
-
-/* Optional: hover pause */
-.context__inner:hover {
-  animation-play-state: paused;
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Computer Saksharta Mission | GCSM</title>
+    <link rel="icon" href="https://www.gcsm.net.in/assets/images/favicon.png" type="image/png" />
+    <link rel="stylesheet" href="https://www.gcsm.net.in/assets/css/splide.min.css">
+    <link rel="stylesheet" href="https://www.gcsm.net.in/assets/css/dripicons.css">
+    <link rel="stylesheet" href="https://www.gcsm.net.in/assets/css/app.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
+<div id="main" class="header-fixed">
+    <div class="page-header">
+        <div class="page-header-main">
+            <div class="nav-icons"><span id="menu" class="dripicons-menu"></span></div>
+            <div class="logo">
+                <div class="company-title">
+                    Global Computer Saksharta Mission (GCSM)
+                </div>
+            </div>
+        </div>
+        <div class="page-header-nav">
+            <ul class="top-page-nav">
+                <li><a href="https://www.gcsm.net.in/" class="btn tp-nav-btn">Home</a></li>
+<li><a href="https://www.gcsm.net.in/#courses_panel" class="btn tp-nav-btn">Courses</a></li>
+<li><a href="https://www.gcsm.net.in/about-us" class="btn tp-nav-btn">About Us</a></li>
+<li><a href="https://www.gcsm.net.in/results" class="btn tp-nav-btn">Results</a></li>
+<li><a href="https://studentpnl.netlify.app/" class="btn tp-nav-btn" style="
+	color: #fbd783;
+	border-bottom: 2px solid #fbd783;
+	border-radius: 0;
+">Results 2024+</a></li>
 
-<div class="context">
-  <div class="context__inner">
-    <span>GLOBAL COMPUTER SAKSHARTHA MISSION (GCSM)</span>
-    <span>GLOBAL COMPUTER SAKSHARTHA MISSION (GCSM)</span>
+<li><a href="https://www.youtube.com/@GCSM" rel="nofollow" class="btn tp-nav-btn" style="background: #fb4500; background: linear-gradient(15deg, #ff0b39, #f22987)" target="_blank">Youtube Channel</a></li>            </ul>
+        </div>
+    </div>
+    <aside id="sidemenu" class="side-nav-container">
+        <div id="sideNavOverlay" class="side-nav-overlay"></div>
+        <div class="sidenav-wrapper">
+            <ul class="sidenavmenu">
+                <li class="snavtitle"><b>GCSM Menu:</b><span id="sidenavclose" class="dripicons-arrow-left"></span></li>
+                <li><a href="https://www.gcsm.net.in/">Home</a></li>
+                <li><a href="https://www.gcsm.net.in/about-us">About Us</a></li>
+                <li style="border-left-color: orangered;"><a href="https://www.gcsm.net.in/results">Results</a></li>
+            </ul>
+        </div>
+    </aside>
+    <div class="panel">
+    
+
+    <div class="input-box">
+      <label class="swag" for="course">ADVANCE DIPLOMA IN <br> COMPUTER APPLICATION <br> (ADCA)</label>
+      <select id="course">
+        <option value="">-- Choose Course --</option>
+        <option value="adca">ADCA</option>
+        <option value="typing2024">TYPING</option>
+        
+      </select>      
+    </div>
+    
+    <div class="input-box">
+      <label for="YEAR">Choose Batch</label>
+      <select id="Session">
+        <option value="">-- Choose Year --</option>
+        <option value="2024">2024</option>
+        <option value="2025">2025</option>
+        
+      </select>      
+    </div>
+
+    <div class="input-box">
+      <label for="rollNo">Enter Roll Number</label>
+      <input type="text" id="rollNo" placeholder="Enter Roll Number">
+    </div>
+
+    <button class="btn search-btn" onclick="searchRoll()">Check Result</button>
+    <!-- <button class="btn login-btn" onclick="loginNow()">🔑 Login</button>
+    <button class="btn call-btn" onclick="callCentre()">📞 Call to Centre</button> -->
   </div>
-</div>
-
+        
+        
+<script src="https://www.gcsm.net.in/assets/js/jquery-3.6.0.min.js"></script>
+<script src="https://www.gcsm.net.in/assets/js/splide-extension-intersection.min.js"></script>
+<script src="https://www.gcsm.net.in/assets/js/splide.min.js"></script>
+<script src="https://www.gcsm.net.in/assets/js/app.js"></script>
+<script src="https://www.gcsm.net.in/assets/js/home.js"></script>
 </body>
 </html>
+
+
+
+
