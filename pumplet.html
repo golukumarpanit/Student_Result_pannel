@@ -4,9 +4,10 @@
   <meta charset="UTF-8" />
   <title>Left Banner Photo Replace</title>
   <link
-    href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css"
-    rel="stylesheet"
-  />
+    href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css"rel="stylesheet" />
+  <!-- Google Fonts से Montserrat मोटा फॉन्ट इंपोर्ट -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet" />
+
   <style>
     body {
       background: #eee;
@@ -42,7 +43,7 @@
       margin: 10px 0;
     }
     .pagefirst {
-      height: 200px;
+      height: 100%;
       width: 100%;
       border: solid black 2px;
     }
@@ -54,17 +55,19 @@
       align-items: center;
     }
     .internub {
-      width: 100%;
-      position: absolute;
-      left: 300px;
-      top: 480px;
-      font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-      font-size: 40px;
-      color: black;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+  width: 100%;
+  position: absolute;
+  left: 30px;
+  top: 480px;
+  font-family: 'Montserrat', Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-size: 40px;
+  font-weight: 700; /* मोटा फॉन्ट */
+  color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
     .radhe{
       font-size: 50px;
     }
@@ -88,7 +91,7 @@
       <h2>Left Photo Replace & Crop Demo</h2>    
 
       <label class="radhe" for="Mobile">Name & Mobile</label>
-      <input class="radhe" type="text" name="Mobile" id="Mobile" placeholder="Mobile Type Here" />
+      <input class="radhe" type="text" name="Mobile" id="Mobile" placeholder="Name & Mobile Type Here" />
 
       <div id="upload-box" class="radhe">
         <input class="radhe" type="file" id="img-upload" accept="image/*" />
