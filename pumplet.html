@@ -154,48 +154,49 @@
     });
 
     downloadBtn.addEventListener("click", () => {
-      if (!croppedImageDataUrl) return;
+  if (!croppedImageDataUrl) return;
 
-      const mainBanner = document.getElementById("main-banner");
-      const bannerContainer = document.querySelector(".banner-container");
+  const mainBanner = document.getElementById("main-banner");
+  const bannerContainer = document.querySelector(".banner-container");
 
-      const canvas = document.createElement("canvas");
-      canvas.width = mainBanner.naturalWidth;
-      canvas.height = mainBanner.naturalHeight;
-      const ctx = canvas.getContext("2d");
+  const canvas = document.createElement("canvas");
+  canvas.width = mainBanner.naturalWidth;
+  canvas.height = mainBanner.naturalHeight;
+  const ctx = canvas.getContext("2d");
 
-      ctx.drawImage(mainBanner, 0, 0, canvas.width, canvas.height);
+  ctx.drawImage(mainBanner, 0, 0, canvas.width, canvas.height);
 
-      const croppedImg = new Image();
-      croppedImg.onload = () => {
-        const scaleX = canvas.width / bannerContainer.clientWidth;
-        const scaleY = canvas.height / bannerContainer.clientHeight;
+  const croppedImg = new Image();
+  croppedImg.onload = () => {
+    const scaleX = canvas.width / bannerContainer.clientWidth;
+    const scaleY = canvas.height / bannerContainer.clientHeight;
 
-        const posX = leftPhoto.offsetLeft * scaleX;
-        const posY = leftPhoto.offsetTop * scaleY;
-        const width = leftPhoto.clientWidth * scaleX;
-        const height = leftPhoto.clientHeight * scaleY;
+    const posX = leftPhoto.offsetLeft * scaleX;
+    const posY = leftPhoto.offsetTop * scaleY;
+    const width = leftPhoto.clientWidth * scaleX;
+    const height = leftPhoto.clientHeight * scaleY;
 
-        ctx.drawImage(croppedImg, posX, posY, width, height);
+    ctx.drawImage(croppedImg, posX, posY, width, height);
 
-        ctx.font = "40px Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif";
-        ctx.fillStyle = "black";
-        ctx.textAlign = "center";
+    // टेक्स्ट की पोजिशनिंग जो .internub के जैसी हो
+    const textX = 300 * scaleX + 150 * scaleX; // left + width/2 (केन्द्र में)
+    const textY = 475 * scaleY + 40 * scaleY * 0.75; // top + font-size का लगभग बेसलाइन
 
-        const textX = (200 + 150) * scaleX;
-        const textY = (5 + 40) * scaleY;
+    ctx.font = "40px Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif";
+    ctx.fillStyle = "black";
+    ctx.textAlign = "center";
+    ctx.fillText(krishnaSpan.textContent, textX, textY);
 
-        ctx.fillText(krishnaSpan.textContent, textX, textY);
+    const finalImageUrl = canvas.toDataURL("image/png");
 
-        const finalImageUrl = canvas.toDataURL("image/png");
+    const link = document.createElement("a");
+    link.href = finalImageUrl;
+    link.download = "banner_with_cropped_image.png";
+    link.click();
+  };
+  croppedImg.src = croppedImageDataUrl;
+});
 
-        const link = document.createElement("a");
-        link.href = finalImageUrl;
-        link.download = "banner_with_cropped_image.png";
-        link.click();
-      };
-      croppedImg.src = croppedImageDataUrl;
-    });
   </script>
 </body>
 </html>
