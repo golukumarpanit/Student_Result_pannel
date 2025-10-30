@@ -65,6 +65,9 @@
       justify-content: center;
       align-items: center;
     }
+    .radhe{
+      font-size: 30px;
+    }
   </style>
 </head>
 <body>
@@ -82,20 +85,16 @@
     </div>
 
     <div class="pagefirst">
-      <h2>Left Photo Replace & Crop Demo</h2>
+      <h2>Left Photo Replace & Crop Demo</h2>    
 
-      <label for="NAME">NAME</label>
-      <input type="text" name="NAME" id="NAME" placeholder="Name type Here" />
-      <br />
+      <label class="radhe" for="Mobile">Name & Mobile</label>
+      <input class="radhe" type="text" name="Mobile" id="Mobile" placeholder="Mobile Type Here" />
 
-      <label for="Mobile">Mobile</label>
-      <input type="text" name="Mobile" id="Mobile" placeholder="Mobile Type Here" />
-
-      <div id="upload-box">
+      <div id="upload-box" class="radhe">
         <input type="file" id="img-upload" accept="image/*" />
-        <button id="crop-btn" style="display:none;">क्रॉप करें</button>
-        <button id="apply-btn" style="display:none;">बैनर में लगाएं</button>
-        <button id="download-btn" style="display:none;">इमेज डाउनलोड करें</button>
+        <button class="radhe" id="crop-btn" style="display:none;">क्रॉप करें</button>
+        <button class="radhe" id="apply-btn" style="display:none;">बैनर में लगाएं</button>
+        <button class="radhe" id="download-btn" style="display:none;">इमेज डाउनलोड करें</button>
       </div>
       <img id="preview-img" />
     </div>
