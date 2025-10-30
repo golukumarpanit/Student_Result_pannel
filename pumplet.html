@@ -16,8 +16,6 @@
       position: relative;
       width: 1000px;
       max-width: 100%;
-      /* margin: auto; */
-      justify-items: left;
     }
     #main-banner {
       width: 100%;
@@ -31,10 +29,9 @@
       height: 230px;
       border-radius: 5px;
       object-fit: cover;
-      border: 2px solid #fff;
+      border: 2px solid black;
     }
-    #preview-img,
-    #crop-area {
+    #preview-img {
       display: none;
     }
     #upload-box {
@@ -45,37 +42,46 @@
       margin: 10px 0;
     }
     .pagefirst {
-      height: 600px;
-      width: 300px;
+      height: 200px;
+      width: 100%;
       border: solid black 2px;
     }
     .container {
       display: flex;
+      flex-direction: column;
+      width: 100%;
+      justify-content: center;
+      align-items: center;
     }
     .internub {
       width: 300px;
-      height: 50px;
-      border: solid black 2px;
-      background-color: #eee;
+      height: 40px;
       position: absolute;
-      left: 695px;
-      top: 115px;
-    }
-    .internub{
-      display: flex;
-      font-size: 50px;
+      left: 300px;
+      top: 515px;
       font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-      justify-items: center;
+      font-size: 40px;
+      color: black;
+      display: flex;
       justify-content: center;
-      text-align: center;
       align-items: center;
-      
     }
-    
   </style>
 </head>
 <body>
   <div class="container">
+    <div class="banner-container">
+      <img src="Untitled-1.jpg" id="main-banner" alt="Banner Image" />
+      <img
+        id="left-photo"
+        src="https://via.placeholder.com/230x270.png?text=Upload+Photo"
+        alt="Left Photo"
+      />
+      <div class="internub">
+        <span id="Krishna">9852875207</span>
+      </div>
+    </div>
+
     <div class="pagefirst">
       <h2>Left Photo Replace & Crop Demo</h2>
 
@@ -83,31 +89,16 @@
       <input type="text" name="NAME" id="NAME" placeholder="Name type Here" />
       <br />
 
-      <label for="Mobile"> Mobile </label>
-      <input class="mobileradhe" type="text" name="Mobile" id="Mobile" placeholder="Mobile Type Here" />
+      <label for="Mobile">Mobile</label>
+      <input type="text" name="Mobile" id="Mobile" placeholder="Mobile Type Here" />
 
       <div id="upload-box">
         <input type="file" id="img-upload" accept="image/*" />
-        <button id="crop-btn" style="display: none;">क्रॉप करें</button>
-        <button id="apply-btn" style="display: none;">बैनर में लगाएं</button>
-        <button id="download-btn">इमेज डाउनलोड करें</button>
+        <button id="crop-btn" style="display:none;">क्रॉप करें</button>
+        <button id="apply-btn" style="display:none;">बैनर में लगाएं</button>
+        <button id="download-btn" style="display:none;">इमेज डाउनलोड करें</button>
       </div>
       <img id="preview-img" />
-    </div>
-
-    <div class="pagesecond">
-      <div class="banner-container">
-        <!-- Banner image -->
-        <img src="Untitled-1.jpg" id="main-banner" />
-        <!-- Left photo show here -->
-        <img
-          id="left-photo"
-          src="https://via.placeholder.com/230x270.png?text=Upload+Photo"
-        />
-        <div class="internub">
-          <span class="ramkrishna" id="Krishna"> 9852875207 </span>
-        </div>
-      </div>
     </div>
   </div>
 
@@ -124,14 +115,11 @@
     const mobileInput = document.getElementById("Mobile");
     const krishnaSpan = document.getElementById("Krishna");
 
-    // मोबाइल नंबर input में टाइप करते ही span में दिखे
     mobileInput.addEventListener("input", () => {
-      krishnaSpan.textContent = mobileInput.value;
+      krishnaSpan.textContent = mobileInput.value || "9852875207";
     });
 
-    downloadBtn.style.display = "none";
-
-    imgUpload.addEventListener("change", function (e) {
+    imgUpload.addEventListener("change", (e) => {
       const file = e.target.files[0];
       if (file) {
         previewImg.src = URL.createObjectURL(file);
@@ -147,17 +135,17 @@
       }
     });
 
-    cropBtn.addEventListener("click", function () {
+    cropBtn.addEventListener("click", () => {
       if (cropper) {
         const canvas = cropper.getCroppedCanvas({ width: 180, height: 230 });
         croppedImageDataUrl = canvas.toDataURL();
         previewImg.src = croppedImageDataUrl;
         applyBtn.style.display = "inline-block";
-        downloadBtn.style.display = "inline-block"; // Show download button after crop
+        downloadBtn.style.display = "inline-block";
       }
     });
 
-    applyBtn.addEventListener("click", function () {
+    applyBtn.addEventListener("click", () => {
       leftPhoto.src = previewImg.src;
       previewImg.style.display = "none";
       cropBtn.style.display = "none";
@@ -165,50 +153,48 @@
       imgUpload.value = "";
     });
 
-    downloadBtn.addEventListener("click", function () {
-      if (croppedImageDataUrl) {
-        const mainBanner = document.getElementById("main-banner");
+    downloadBtn.addEventListener("click", () => {
+      if (!croppedImageDataUrl) return;
 
-        // नया canvas बनाएं, mainBanner के original size के साथ
-        const canvas = document.createElement("canvas");
-        canvas.width = mainBanner.naturalWidth;
-        canvas.height = mainBanner.naturalHeight;
-        const ctx = canvas.getContext("2d");
+      const mainBanner = document.getElementById("main-banner");
+      const bannerContainer = document.querySelector(".banner-container");
 
-        // mainBanner इमेज को canvas पर ड्रॉ करें
-        ctx.drawImage(mainBanner, 0, 0, canvas.width, canvas.height);
+      const canvas = document.createElement("canvas");
+      canvas.width = mainBanner.naturalWidth;
+      canvas.height = mainBanner.naturalHeight;
+      const ctx = canvas.getContext("2d");
 
-        // croppedImage को नया img टर्न करें
-        const croppedImg = new Image();
-        croppedImg.onload = function () {
-          // leftPhoto की current position और size कैनवास के जिनको ध्यान में रखकर ड्रॉ करें
-          // offsetLeft और offsetTop यहाँ काम नहीं करेंगे क्योंकि ये पेज पर relative हैं, हम canvas के हिसाब से position देंगे
-          // आप left-photo के position को relative बैनर में से calculate कर सकते हैं
+      ctx.drawImage(mainBanner, 0, 0, canvas.width, canvas.height);
 
-          // left-photo के लिए जैसा style है, वो main-banner के relative है
-          // बैनर 1000px wide है, और आपके canvas का width भी main-banner की naturalWidth है  
-          // इसलिए leftPhoto.left को स्केल करें: (leftPhoto.offsetLeft / banner.clientWidth) * canvas.width
-          const banner = document.querySelector(".banner-container");
-          const scaleX = canvas.width / banner.clientWidth;
-          const scaleY = canvas.height / banner.clientHeight;
+      const croppedImg = new Image();
+      croppedImg.onload = () => {
+        const scaleX = canvas.width / bannerContainer.clientWidth;
+        const scaleY = canvas.height / bannerContainer.clientHeight;
 
-          const posX = leftPhoto.offsetLeft * scaleX;
-          const posY = leftPhoto.offsetTop * scaleY;
-          const width = leftPhoto.clientWidth * scaleX;
-          const height = leftPhoto.clientHeight * scaleY;
+        const posX = leftPhoto.offsetLeft * scaleX;
+        const posY = leftPhoto.offsetTop * scaleY;
+        const width = leftPhoto.clientWidth * scaleX;
+        const height = leftPhoto.clientHeight * scaleY;
 
-          ctx.drawImage(croppedImg, posX, posY, width, height);
+        ctx.drawImage(croppedImg, posX, posY, width, height);
 
-          // कैनवास को data URL में कन्वर्ट करें और डाउनलोड लिंक बनाएं
-          const finalImageUrl = canvas.toDataURL("image/png");
+        ctx.font = "40px Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif";
+        ctx.fillStyle = "black";
+        ctx.textAlign = "center";
 
-          const link = document.createElement("a");
-          link.href = finalImageUrl;
-          link.download = "banner_with_cropped_image.png";
-          link.click();
-        };
-        croppedImg.src = croppedImageDataUrl;
-      }
+        const textX = (200 + 150) * scaleX;
+        const textY = (5 + 40) * scaleY;
+
+        ctx.fillText(krishnaSpan.textContent, textX, textY);
+
+        const finalImageUrl = canvas.toDataURL("image/png");
+
+        const link = document.createElement("a");
+        link.href = finalImageUrl;
+        link.download = "banner_with_cropped_image.png";
+        link.click();
+      };
+      croppedImg.src = croppedImageDataUrl;
     });
   </script>
 </body>
