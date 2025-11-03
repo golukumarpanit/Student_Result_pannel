@@ -19,7 +19,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/cropperjs/dist/cropper.min.css" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">     
-    <script src="ADCA2025.js"></script>
+    
+    <script src="ADCA24.js"></script>
     
     <!-- <script src="store.js"></script> -->
    
@@ -29,20 +30,9 @@
 </head>
 </html>
 <body>  
-    <div id="loadingScreen" 
-       style="position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-              background: white; display: flex; flex-direction: column;
-              align-items: center; justify-content: center; font-size: 24px;
-              font-family: Poppins, sans-serif; z-index: 9999;">
-    <img src="https://i.gifer.com/YCZH.gif" width="80" alt="Loading...">
-    <p id="loadingText">Please Wait... Fetching Data</p>
-  </div>
-
-  <div id="mainContent" style="display: none;">
-    <div class="errorMsg" id="errorMsg"></div>
         
-                        <div class="preview-container">
-                            <div class="first-page" style="display: none;">             
+                        <!-- <div class="preview-container">
+                            <div class="first-page">             
                                 <div class="preview" id="preview1">                
                                     <div class="search-box">
                                         <input type="text" id="idInput" placeholder="Enter Roll Nub ">
@@ -51,7 +41,6 @@
                                     
                                     
                                     <h2 style="text-align: center;">ADCA Certificate Data 2024</h2>
-                                    <div class="errorMsg" id="errorMsg"></div>
                                     <div id="message">Please Wait...</div> 
                                             <div class="form-container">                             
 
@@ -153,7 +142,7 @@
                                              
                                 </div>           
                             </div>
-                        </div>  
+                        </div>   -->
     <!-- Preview 2 -->
      
     <!DOCTYPE html>
@@ -249,18 +238,18 @@
                                             <div class="mt-2 !font-black cert-body pt-2">
                                             <div class="flex pt-2 pb-3 text-left">
                                                 <div class="flex-initial w-fit">This Certificate is awarded to Mr./Ms</div>
-                                                <p id="studentName" class="normal-font ml-2 mr-2 flex font-normal justify-center uppercase items-center font-black font-bold border-b border-black border-dotted">PLese Wait</p>
+                                                <p id="studentName" class="normal-font ml-2 mr-2 flex font-normal justify-center uppercase items-center font-black font-bold border-b border-black border-dotted">Please Enter Valid Roll Nub</p>
                                             </div>
                                             <!--yaha hai father name ka pathwaya yaha se code lena hai-->
                                             <div class="flex pt-2 pb-2 text-left">
                                                 <div class="flex-initial w-fit">S/o, D/o.</div>
-                                                <p  class="ml-2 mr-2 normal-font border-b flex justify-center items-center border-black border-dotted"><span id="fatherName" class="font-bold uppercase">PLese Wait</span></p>
+                                                <p  class="ml-2 mr-2 normal-font border-b flex justify-center items-center border-black border-dotted"><span id="fatherName" class="font-bold uppercase">Please Choose Correctly</span></p>
                                                 <div class="flex-initial w-fit">On Successful</div>
                                             </div>
                                             <!--yaha course update hona hai-->
                                             <div class="flex pt-2 pb-2 text-left">
                                                 <div class="flex-initial w-fit">Completion of the course</div>
-                                                <p id="courseName" class="normal-font ml-2 flex justify-center items-center uppercase font-bold border-b border-black border-dotted">PLese Wait</p>
+                                                <p id="courseName" class="normal-font ml-2 flex justify-center items-center uppercase font-bold border-b border-black border-dotted">Please Select Correctly</p>
                                             </div>
                                             <div class="flex pt-2 pb-2 text-left">
                                                 <div class="flex-initial w-fit">Of</div>
@@ -293,7 +282,7 @@
                                             </div>
                                             <!--yaha change krna hai jo data form se aa rha hai-->
                                             <div>
-                                                <p id="completionDate" class="ml-10 mr-10 border-b-c border-black text-lg !mt-[-4px]">18-02-2025</p>
+                                                <p id="completionDate" class="ml-10 mr-10 border-b-c border-black text-lg !mt-[-4px]">20-02-2024</p>
                                                 <p class="font-bold text-xl">Date of Issue</p>
                                             </div>
                                             <!--session change ke bad autoupdate hona chahiye 21-02-2023 me-->
@@ -321,8 +310,7 @@
         </div>
     </div>
 </div>
-</div>
-<!-- <div id="message">Please Wait...</div> -->
+<div id="message">Please Wait...</div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
 <script>
     
