@@ -26,7 +26,7 @@ function searchRoll() {
       url = "ADCA2025.html?roll=" + encodeURIComponent(roll);
     } 
     else if (course === "typing2024" && session === "2024") {
-      url = "typing.html?roll=" + encodeURIComponent(roll);
+      url = "Typing24.html?roll=" + encodeURIComponent(roll);
     } 
     else if (course === "typing2024" && session === "2025") {
       url = "typing.html?roll=" + encodeURIComponent(roll);
