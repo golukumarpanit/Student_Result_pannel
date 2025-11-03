@@ -29,7 +29,7 @@ function searchRoll() {
       url = "Typing24.html?roll=" + encodeURIComponent(roll);
     } 
     else if (course === "typing2024" && session === "2025") {
-      url = "typing.html?roll=" + encodeURIComponent(roll);
+      url = "Typing25.html?roll=" + encodeURIComponent(roll);
     }
     else {
       alert("⚠️ No page set for this combination!");
