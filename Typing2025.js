@@ -64,11 +64,15 @@ async function fetchFullData() {
     const photoIndex = headers.indexOf("photourl");
 
     const record = rows.find((row, i) => i > 0 && (row[rollIndex] === roll || row[0] === roll));
+    
     if (!record) {
-      errorMsg.innerText = "❌ रिकॉर्ड नहीं मिला।";
-      message.innerText = "";
-      return;
+    errorMsg.innerText = "❌ रिकॉर्ड नहीं मिला।";
+    message.innerText = "";
+    document.getElementById("mainContent").style.display = "none";  // यहाँ mainContent छुपाएं
+    return;
     }
+
+
 
     // Field Mapping
     const fields = {};
@@ -94,7 +98,22 @@ function displayFields(fields) {
   document.getElementById("studentName").innerText = fields['NAME'] || "N/A";
   document.getElementById("fatherName").innerText = fields['FATHERS_NAME'] || "N/A";
   document.getElementById("DOBfatch").innerText = fields['DOB'] || "N/A";
-  document.getElementById("courseName").innerText = fields['SELECT_COURSE'] || "N/A";
+
+
+  if (fields['SELECT_COURSE'] !== "English And Hindi Typing") {
+  alert("यह रिजल्ट English And Hindi Typing कोर्स के लिए ही दिखेगा। पेज अब बंद किया जा रहा है।");
+  // पेज कंटेंट छुपाएं
+  document.body.innerHTML = "<h2>यह पेज केवल English And Hindi Typing कोर्स के लिए है।</h2>";
+  // टेब को बंद करने की कोशिश
+  window.close();
+  return; // आगे का कोड न चले
+}
+// अगर ऊपर का चेक पास हो जाए, तब रिजल्ट दिखाएं
+document.getElementById("courseName").innerText = fields['SELECT_COURSE'] || "N/A";
+
+
+
+
   document.getElementById("englishspeed").innerText = fields['English_Typ'] || "N/A";
   document.getElementById("hindispeed").innerText = fields['Hindi_Typ'] || "N/A";
   document.title = fields['ROLL_NUB'] || "Certificate Search";
@@ -163,19 +182,22 @@ window.addEventListener("load", () => {
 
   const urlParams = new URLSearchParams(window.location.search);
   const rollNumber = urlParams.get("roll");
-  if (rollNumber) {
-    document.getElementById("idInput").value = rollNumber;
 
-    // डेटा लाने का async process
-    fetchFullData().then(() => {
-      // ✅ जब डेटा आ जाए तब loading हटाओ
-      loadingScreen.style.display = "none";
-      mainContent.style.display = "block";
-    }).catch(() => {
-      loadingText.innerText = "❌ Error fetching data! Please reload.";
-    });
-  } else {
-    loadingText.innerText = "⚠️ Roll Number Missing in URL!";
-  }
+  if (rollNumber) {
+  document.getElementById("idInput").value = rollNumber;
+  fetchFullData().then(() => {
+    document.getElementById("loadingScreen").style.display = "none";
+    document.getElementById("mainContent").style.display = "block";  // डेटा आने पर दिखाएं
+  }).catch(() => {
+    document.getElementById("loadingScreen").style.display = "none";
+    document.getElementById("mainContent").style.display = "none";  // error पर छुपाएं
+    alert("डेटा लाने में त्रुटि या रोल नंबर गलत है।");
+  });
+} else {
+  document.getElementById("loadingText").innerText = "⚠️ Roll Number Missing in URL!";
+  document.getElementById("mainContent").style.display = "none";  // रोल ना होने पर भी न दिखाएं
+}
+
+
 });
 // </script>
