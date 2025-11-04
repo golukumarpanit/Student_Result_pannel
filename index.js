@@ -20,7 +20,7 @@ function searchRoll() {
 
     // Condition check
     if (course === "adca" && session === "2024") {
-      url = "log.html?roll=" + encodeURIComponent(roll);
+      url = "ADCA2024.html?roll=" + encodeURIComponent(roll);
     } 
     else if (course === "adca" && session === "2025") {
       url = "ADCA2025.html?roll=" + encodeURIComponent(roll);
