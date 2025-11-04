@@ -95,6 +95,7 @@ function displayFields(fields) {
   document.getElementById("fatherName").innerText = fields['FATHERS_NAME'] || "N/A";
   document.getElementById("DOBfatch").innerText = fields['DOB'] || "N/A";
   document.getElementById("courseName").innerText = fields['SELECT_COURSE'] || "N/A";
+  document.getElementById("qrc").innerText = fields['Ms_Nub'] || "N/A";
   // document.getElementById("englishspeed").innerText = fields['English_Typ'] || "N/A";
   // document.getElementById("hindispeed").innerText = fields['Hindi_Typ'] || "N/A";
   document.title = fields['ROLL_NUB'] || "Certificate Search";
