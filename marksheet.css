@@ -1,0 +1,508 @@
+
+
+/* --- A4 PAGE SIZE --- */
+.pagesecond {
+  width: 210mm;
+  height: 297mm;
+  margin: 0 auto;
+  box-shadow: 0 0 8px rgba(0,0,0,0.3);
+  box-sizing: border-box;
+  position: relative;
+  background: white;
+}
+
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 8mm;
+  }
+  body, html {
+    width: 210mm;
+    height: 297mm;
+    margin: 0;
+    padding: 0;
+    background: white;
+  }
+  .pagesecond {
+    margin: 0;
+    box-shadow: none;
+    border: none;
+    page-break-after: avoid;
+  }
+}
+
+
+/* --- WATERMARK --- */
+.pagesize {
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+  width: 210mm;
+  height: 297mm;
+  border: solid rgb(27, 6, 143) 5px;
+  position: relative;
+  background-size: contain;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+.pagesize::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("https://www.gcsm.net.in/assets/tmp-assets/images/logo-circle.png")
+              no-repeat center center;
+  background-size: 80%;
+  width: 800px;
+  height: 1200px;
+  
+  opacity: 0.1;              /* watermark को soft बनाता है */
+  mix-blend-mode: multiply;   /* background के साथ naturally blend होगा */
+  /* filter: brightness(6001%);   थोड़ा light effect देता है */
+  z-index: 0;
+  pointer-events: none;
+}
+.session{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-weight: bold;
+}
+
+/* --- REST ALL FROM YOUR EXISTING CSS (SAME AS ABOVE) --- */
+  
+
+        
+
+
+    .secondborder {
+    height: 293mm;
+    /* 0.4cm कम */
+    width: 20.6cm;
+    /* 0.4cm कम */
+    border: solid red 4px;
+    margin: auto;
+    /* ताकि यह center में रहे */
+    align-content: center;
+
+    }
+
+    .thirdborder {
+    height: 289mm;
+    /* 0.4cm कम */
+    width: 20.2cm;
+    /* 0.4cm कम */
+    border: solid rgb(231, 231, 8) 3px;
+    margin: auto;
+    /* ताकि यह center में रहे */
+    align-content: center;
+    }
+
+    .fourthpage {
+    height: 25.8cm;
+    height: 285mm;
+    /* 0.4cm कम */
+    width: 19.8cm;
+    /* 0.4cm कम */
+    border: solid rgb(7, 6, 143) 2px;
+    margin: auto;
+    /* ताकि यह center में रहे */
+
+
+    }
+
+    .name {
+        margin-left: 33px;
+    }
+
+    .MAINCONTENT {
+        margin: 10px;
+    }
+
+    .LINE {
+        background-color: black;
+        width: 100%;
+        height: 0.1cm;
+        margin-top: 5px;
+    }
+
+    .gcsmimage {
+        height:     cm;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 7px;
+        margin: 0 auto;
+    }
+
+    .iso {
+        display: flex;
+        align-items: center;
+
+
+    }
+
+    .isotitle {
+        background-color: rgb(55, 96, 146);
+        color: white;
+        font-weight: bold;
+        border-radius: 5px;
+        font-size: 12pt;
+        height: 0.8cm;
+        width: 9cm;
+        align-content: center;
+        text-align: center;
+        margin-top: 5px;
+
+    }
+
+    .registration {
+        text-align: right;
+        margin-left: 170px;
+    }
+
+    .iso1 {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 12px;
+    }
+
+    .certificatenub {
+        margin-left: 10px;
+        font-size: 14pt;
+    }
+
+    .boxforcerti {
+        height: 1cm;
+        width: 6cm;
+        border: solid rgb(44, 42, 42) 2px;
+        font-size: 10pt;
+        align-content: center;
+        
+        /* text-align: center; */
+    }
+    .sala{
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        font-weight: bold;
+        font-size: 13pt    ;
+    }
+    
+    .line2 {
+        display: flex;
+        align-items: center;
+        margin-top: 15px;
+
+    }
+
+    .line1 {
+        background-color: black;
+        height: 0.050cm;
+        width: 5cm;
+    }
+    .tableheading{
+        height: 40px;
+        align-items: start;
+        align-content: start;
+        text-align: start;
+
+        
+        
+        
+        
+    }
+
+    .statementofmarks {
+        font-size: 16pt;
+        color: red;
+        font-weight: bold;
+        margin-left: 20px;
+        margin-right: 20px;
+
+
+        text-align: center;
+
+    }
+
+    .logolaganahai {
+        display: flex;
+        justify-content: space-between;
+
+    }
+
+    .namecontext {
+
+        justify-content: left;
+        justify-items: left;
+        
+        
+
+    }
+
+    
+
+    .logopic {
+
+        height: 100%;
+        
+
+    }
+
+    .imagelogo {
+        height: 110px;
+        width: 110px;
+
+
+    }
+
+    .headroll {
+        margin-top: 15px;
+        display: flex;
+        text-align: left;
+        align-items: center;
+
+    }
+    .rollno {
+        font-family: 'ScriptMTBold', cursive, sans-serif;
+        font-size: 16pt;
+        font-weight: bold;
+        display: flex;
+        width: 300px;  /* बायीं तरफ fixed width */
+        
+    }
+    .ltr{
+        font-family: 'ScriptMTBold', cursive, sans-serif;
+        border-top: solid black 2px;
+
+    }
+    
+    .mid_element{
+        font-size: 14pt;
+        width: 30px;
+    }
+    .right_element{
+        margin: 0 auto;
+        margin-bottom: 0;
+        font-size: 14pt;
+        font-weight: bold;
+        
+        flex: 1;
+    }
+    .adv{
+        margin: 0 auto;
+        margin-bottom: 0;
+        font-size: 12pt;
+        font-weight: bold;
+        
+        flex: 1;
+
+    }
+
+    .tablediv {
+        width: 100%;
+        height: 100%;
+        justify-items: center;
+    }
+
+    .tablecontent {
+        justify-items: center;
+        font-weight: bold;
+        
+
+        width: 95%;
+        
+    }
+
+    .uppar {
+        align-content: flex-start;
+        text-align: center;
+        height: 100%;
+
+    }
+
+    .uppar1 {
+        align-content: flex-start;
+        height: 100%;
+    }
+
+    .GRADE {
+        display: flex;
+        margin-left: 15px;
+        justify-content: space-between;
+        width: 95%;
+        margin-top: 20px;
+    }
+    .PERCENTAGE{
+        display: flex;
+        align-items: center; /* vertically same level pe */
+        gap: 5px;   
+        font-size: 16pt;         /* dono ke beech chhota gap */
+    }
+
+    .EXCELLENCE {
+        justify-content: space-between;
+        margin-left: 300px;
+        display: flex;
+        align-items: center; /* vertically same level pe */
+        gap: 5px;    
+        font-size: 16pt;         /* dono ke beech chhota gap */ 
+
+    }
+    .subpercentage{
+        font-family: 'ScriptMTBold', cursive, sans-serif;
+
+    }
+
+    .TEACHERNAME {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  width: 95%;
+  margin: 0 auto;
+  font-size: 16pt;
+  font-family: 'ScriptMTBold', cursive, sans-serif;
+  padding-bottom: 15px;
+  height: 130px;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.TEACHERNAME .man {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  position: relative;
+}
+
+.TEACHERNAME img {
+  width: 140px;
+  height: auto;
+  position: absolute;
+  bottom: 2px;      /* 👉 line के ऊपर लाने के लिए control */
+  z-index: 2;
+}
+
+.ltr {
+  border-top: solid black 2px;
+  padding-top: 3px;
+  text-align: center;
+  width: 80%;
+  position: relative;
+  z-index: 1;
+}
+
+
+.singnaturecontrol, .singnaturecontrol_one {
+  /* ❌ ये हटाना है */
+  position: relative;
+  bottom: 25px;
+  left: -50%;
+  top: -100%;
+}
+
+.singnaturecontrol_one {
+  /* ❌ ये भी हटाना है */
+  left: 70%;
+}
+
+
+.man{
+    height: 100%;
+    width: 30%;
+    display: flex;
+    
+    
+    
+    
+}
+#loader {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      z-index: 9999;
+    }
+
+    #loader img {
+      width: 120px;
+      height: 120px;
+      margin-bottom: 10px;
+    }
+
+    #output {
+      text-align: center;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    /* Page hide initially */
+    .container {
+      display: none;
+    }
+
+    
+
+
+    .downline {
+        width: 95%;
+        background-color: black;
+        height: 5px;
+        justify-content: center;
+        justify-items: center;
+        margin: 0 auto;
+    }
+
+    .gradeexpln {
+        
+        margin: 0 auto;
+        text-align: center;
+        width: 95%;
+        margin-top: 8px;
+        border-bottom: solid black  2px  ;
+    }
+
+    .rgnoffice {        
+        width: 95%;
+        border-bottom: 3px double black; /* डबल लाइन आ जाएगी */
+        font-size: 14pt;
+        display: flex;
+    }
+    .patanhik{
+        width: 100%;
+        justify-content: center;
+        justify-items: center;
+        margin-top: 20px;
+        text-align: center;
+        margin-top: 20px;
+        
+        font-weight: bold;
+    }
+
+    /* font face liey hai yaha  */
+    @font-face {
+        font-family: 'ScriptMTBold';
+        src: url('script_mt_bold-webfont.woff2') format('woff2'),
+            url('script_mt_bold-webfont.woff') format('woff');
+        font-weight: bold;
+        font-style: normal;
+    }
+
+
+    
+
+    .roll {
+        font-family: 'ScriptMTBold', cursive, sans-serif;
+        font-size: 14pt;
+    }
+
+    /* iske nich table me jo line aa rhe hai wahi hai  */
+    table {
+        border-collapse: collapse;
+    }
+
+    table,
+    td {
+        border: 1px solid black;
+    }

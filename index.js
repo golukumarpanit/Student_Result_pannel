@@ -31,6 +31,9 @@ function searchRoll() {
     else if (course === "typing2024" && session === "2025") {
       url = "Typing25.html?roll=" + encodeURIComponent(roll);
     }
+    else if (course === "Marksheets" && session === "2024") {
+      url = "marksheets.html?roll=" + encodeURIComponent(roll);
+    }
     else {
       alert("⚠️ No page set for this combination!");
       return;

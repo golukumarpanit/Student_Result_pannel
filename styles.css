@@ -90,7 +90,7 @@ body {
     background-color: #f4f4f4;
     min-height: 100vh;
     display: flex;
-    justify-content: center;   /* Horizontally Center */
+    /* justify-content: center;   Horizontally Center */
     align-items: center;       /* Vertically Center */
     flex-direction: column;
 }      
@@ -151,6 +151,11 @@ body {
     align-items: center;
     height: 400px;
     width: 500px;
+}
+.mainContent{
+    display: none;
+    height: 100PX;
+    background-color: red;
 }
 #previewImage{
     height: 100%;
