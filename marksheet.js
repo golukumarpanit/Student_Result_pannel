@@ -46,7 +46,11 @@ function showData(found, roll) {
   document.getElementById('sessionupdate').textContent = "20-02-2024";
 
   document.getElementById('msDisplay').textContent = escapeHtml(found[MS_COLUMN_INDEX] || "-");
-  document.getElementById('nameDisplay').textContent = escapeHtml(found[NAME_COLUMN_INDEX] || "-");
+  // for uppar case ye krna pada
+  document.getElementById('nameDisplay').textContent =
+  escapeHtml(found[NAME_COLUMN_INDEX] || "-").toUpperCase();
+  // ye uppar ka code uppar ka hai 
+
   document.getElementById('fatherDisplay').textContent = escapeHtml(found[FATHER_COLUMN_INDEX] || "-");        
   document.getElementById('Second_Term').textContent = escapeHtml(found[DOB_COLUMN_INDEX] || "-");
   document.getElementById('Third_Term').textContent = escapeHtml(found[Third_COLUMN_INDEX] || "-");

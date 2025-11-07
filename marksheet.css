@@ -10,6 +10,13 @@
   position: relative;
   background: white;
 }
+.centreFm{
+    text-align: center;
+    
+}
+.percentagevalue{
+    font-weight: bold;
+}
 
 @media print {
   @page {
