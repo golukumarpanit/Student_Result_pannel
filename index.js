@@ -34,6 +34,11 @@ function searchRoll() {
     else if (course === "Marksheets" && session === "2024") {
       url = "marksheets.html?roll=" + encodeURIComponent(roll);
     }
+    // yaha se 2025 ka marksheet bana hai 
+    else if( course === "Marksheets" && session === "2025"){
+      url = "https://marksheets2024.netlify.app/mark2025?roll=" + encodeURIComponent(roll);     
+    }
+    
     else {
       alert("⚠️ No page set for this combination!");
       return;
