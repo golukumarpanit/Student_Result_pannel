@@ -33,7 +33,7 @@
     .buttom{
       font-size: 12pt;
       margin: 10px;
-      color: white;
+      color: rgb(188, 5, 5);
       font-weight: bold;       /* <-- semicolon लगाया */
       text-decoration: none;
 
