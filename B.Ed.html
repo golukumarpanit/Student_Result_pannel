@@ -3,25 +3,47 @@
 <head>
   <meta charset="UTF-8" />
   <title>Left Banner Photo Replace</title>
+
+  <!-- Cropper CSS -->
   <link
-    href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css"rel="stylesheet" />
+    href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css"
+    rel="stylesheet"
+  />
+
   <!-- Google Fonts से Montserrat मोटा फॉन्ट इंपोर्ट -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap"
+    rel="stylesheet"
+  />
 
   <style>
     body {
       background: #eee;
       padding: 20px;
+      margin: 0;
+      font-family: Arial, sans-serif;
     }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      justify-content: center;
+      align-items: center;
+    }
+
     .banner-container {
       position: relative;
-      width: 1000px;
-      max-width: 100%;
+      width: 100%;
+      max-width: 1000px;
     }
+
     #main-banner {
       width: 100%;
       display: block;
     }
+
+    /* Left photo responsive */
     #left-photo {
       position: absolute;
       left: -1px;
@@ -32,44 +54,72 @@
       object-fit: cover;
       border: 2px solid black;
     }
+
     #preview-img {
       display: none;
+      max-width: 400px;
     }
+
     #upload-box {
       margin: 20px 0;
     }
+
     #download-btn {
       display: none;
       margin: 10px 0;
     }
+
     .pagefirst {
-      height: 100%;
       width: 100%;
+      max-width: 1000px;
       border: solid black 2px;
+      padding: 15px;
+      box-sizing: border-box;
+      margin-top: 20px;
+      background: #fff;
     }
-    .container {
-      display: flex;
-      flex-direction: column;
-      width: 100%;
-      justify-content: center;
-      align-items: center;
-    }
+
     .internub {
-    width: 100%;
     position: absolute;
-    left: 30px;
-    top: 475px;
-    font-family: 'Montserrat', Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    font-size: 40px;
-    font-weight: 700; /* मोटा फॉन्ट */
+    width: 100%;
+    top: 15%; /* 75px की जगह percentage, image के हिसाब से स्थिर रहेगा */
+    left: 70%;
+    transform: translateX(-50%); /* हमेशा horizontal center */
+    font-family: "Montserrat", Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+    font-size: 4vw; /* responsive font-size (या media query से fix कर सकते हैं) */
+    font-weight: 700;
     color: black;
     display: flex;
     justify-content: center;
     align-items: center;
+    pointer-events: none;
+}
+
+
+    .radhe {
+      font-size: 20px;
+      margin: 5px 0;
     }
 
-    .radhe{
-      font-size: 50px;
+    .radhe-input {
+      font-size: 20px;
+      padding: 5px 8px;
+      width: 100%;
+      max-width: 500px;
+      box-sizing: border-box;
+    }
+
+    @media (max-width: 600px) {
+      .internub {
+        font-size: 26px;
+        top: 70%;
+      }
+
+      #left-photo {
+        top: 40%;
+        width: 28%;
+        height: auto;
+      }
     }
   </style>
 </head>
@@ -88,25 +138,41 @@
     </div>
 
     <div class="pagefirst">
-      <h2>Left Photo Replace & Crop Demo</h2>    
+      <h2>Left Photo Replace & Crop Demo</h2>
 
-      <label class="radhe" for="Mobile">Name & Mobile</label>
-      <input class="radhe" type="text" name="Mobile" id="Mobile" placeholder="Name & Mobile Type Here" />
+      <label class="radhe" for="Mobile">Name &amp; Mobile</label>
+      <input
+        class="radhe-input"
+        type="text"
+        name="Mobile"
+        id="Mobile"
+        placeholder="Name & Mobile Type Here"
+      />
 
       <div id="upload-box" class="radhe">
         <input class="radhe" type="file" id="img-upload" accept="image/*" />
-        <button class="radhe" id="crop-btn" style="display:none;">क्रॉप करें</button>
-        <button class="radhe" id="apply-btn" style="display:none;">बैनर में लगाएं</button>
-        <button class="radhe" id="download-btn" style="display:none;">इमेज डाउनलोड करें</button>
+        <button class="radhe" id="crop-btn" style="display: none">
+          क्रॉप करें
+        </button>
+        <button class="radhe" id="apply-btn" style="display: none">
+          बैनर में लगाएं
+        </button>
+        <button class="radhe" id="download-btn" style="display: none">
+          इमेज डाउनलोड करें
+        </button>
       </div>
+
       <img id="preview-img" />
     </div>
   </div>
 
+  <!-- Cropper JS -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
+
   <script>
     let cropper;
     let croppedImageDataUrl = null;
+
     const imgUpload = document.getElementById("img-upload");
     const previewImg = document.getElementById("preview-img");
     const cropBtn = document.getElementById("crop-btn");
@@ -115,27 +181,31 @@
     const downloadBtn = document.getElementById("download-btn");
     const mobileInput = document.getElementById("Mobile");
     const krishnaSpan = document.getElementById("Krishna");
+    const mainBanner = document.getElementById("main-banner");
+    const bannerContainer = document.querySelector(".banner-container");
 
+    // Text live update
     mobileInput.addEventListener("input", () => {
       krishnaSpan.textContent = mobileInput.value || "9852875207";
     });
 
+    // Image upload + cropper init
     imgUpload.addEventListener("change", (e) => {
       const file = e.target.files[0];
       if (file) {
         previewImg.src = URL.createObjectURL(file);
         previewImg.style.display = "block";
-        previewImg.style.maxWidth = "400px";
+
         cropBtn.style.display = "inline-block";
 
         if (cropper) cropper.destroy();
         cropper = new Cropper(previewImg, {
-          // aspectRatio: 180 / 230,
           viewMode: 1,
         });
       }
     });
 
+    // Crop button
     cropBtn.addEventListener("click", () => {
       if (cropper) {
         const canvas = cropper.getCroppedCanvas({ width: 180, height: 230 });
@@ -146,6 +216,7 @@
       }
     });
 
+    // Apply to banner
     applyBtn.addEventListener("click", () => {
       leftPhoto.src = previewImg.src;
       previewImg.style.display = "none";
@@ -154,60 +225,80 @@
       imgUpload.value = "";
     });
 
-    // FontFace लोड करें
-const loadMont = new FontFace(
-    'Montserrat',
-    'url(https://fonts.gstatic.com/s/montserrat/v26/JTUQjIg1_i6t8kCHKm45_Qphzf7z.woff2)', // Google Fonts का WOFF2 लिंक
-    { weight: '700', style: 'normal' }
-);
+    // FontFace load (for canvas text)
+    const loadMont = new FontFace(
+      "Montserrat",
+      "url(https://fonts.gstatic.com/s/montserrat/v26/JTUQjIg1_i6t8kCHKm45_Qphzf7z.woff2)",
+      { weight: "700", style: "normal" }
+    );
 
-loadMont.load().then(function(loadedFont) {
-    document.fonts.add(loadedFont);
-    // अब फॉन्ट डाउनलोड हो चुका है और Canvas यूज़ कर सकता है
-});
+    loadMont.load().then(function (loadedFont) {
+      document.fonts.add(loadedFont);
+    });
 
-// अब downloadBtn के click event में यह प्रैक्टिकल use करें
-downloadBtn.addEventListener("click", async () => {
-    if (!croppedImageDataUrl) return;
+    // Download button
+    downloadBtn.addEventListener("click", async () => {
+      if (!croppedImageDataUrl) return;
 
-    // "Montserrat" को apply करने से पहले ensure करें कि font लोड हो गया है
-    await document.fonts.ready;
+      // Ensure font ready
+      await document.fonts.ready;
 
-    // ...बाकी कोड same रहे...
-    const mainBanner = document.getElementById("main-banner");
-    const bannerContainer = document.querySelector(".banner-container");
-    const canvas = document.createElement("canvas");
-    canvas.width = mainBanner.naturalWidth;
-    canvas.height = mainBanner.naturalHeight;
-    const ctx = canvas.getContext("2d");
-    ctx.drawImage(mainBanner, 0, 0, canvas.width, canvas.height);
+      // High DPI handling
+      const naturalW = mainBanner.naturalWidth;
+      const naturalH = mainBanner.naturalHeight;
 
-    const croppedImg = new Image();
-    croppedImg.onload = () => {
-        const scaleX = canvas.width / bannerContainer.clientWidth;
-        const scaleY = canvas.height / bannerContainer.clientHeight;
+      const canvas = document.createElement("canvas");
+      const scale = window.devicePixelRatio || 1;
+
+      canvas.width = naturalW * scale;
+      canvas.height = naturalH * scale;
+
+      const ctx = canvas.getContext("2d");
+      ctx.scale(scale, scale);
+
+      // Draw main banner
+      ctx.drawImage(mainBanner, 0, 0, naturalW, naturalH);
+
+      // Prepare cropped image
+      const croppedImg = new Image();
+      croppedImg.onload = () => {
+        const rect = bannerContainer.getBoundingClientRect();
+        const scaleX = naturalW / rect.width;
+        const scaleY = naturalH / rect.height;
+
+        // Left photo position/size in canvas
         const posX = leftPhoto.offsetLeft * scaleX;
         const posY = leftPhoto.offsetTop * scaleY;
         const width = leftPhoto.clientWidth * scaleX;
         const height = leftPhoto.clientHeight * scaleY;
+
         ctx.drawImage(croppedImg, posX, posY, width, height);
 
-        // अब Canvas текст में Montserrat bold इस्तेमाल करें
-        ctx.font = "700 80px Montserrat, Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif";
+        // Text position from DOM
+        const textRect = krishnaSpan.getBoundingClientRect();
+        const textX =
+          (textRect.left + textRect.width / 2 - rect.left) * scaleX;
+        const textY = (textRect.top + textRect.height - rect.top) * scaleY;
+
+        // Text style
+        ctx.font =
+          "700 40px Montserrat, Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif";
         ctx.fillStyle = "black";
         ctx.textAlign = "center";
         ctx.textBaseline = "bottom";
-        ctx.fillText(krishnaSpan.textContent, 300 * scaleX + 150 * scaleX, 475 * scaleY + 55 * scaleY * 0.75);
+        ctx.fillText(krishnaSpan.textContent, textX, textY);
 
+        // Download image
         const finalImageUrl = canvas.toDataURL("image/png");
         const link = document.createElement("a");
         link.href = finalImageUrl;
         link.download = "banner_with_cropped_image.png";
+        document.body.appendChild(link);
         link.click();
-    };
-    croppedImg.src = croppedImageDataUrl;
-});
-
+        document.body.removeChild(link);
+      };
+      croppedImg.src = croppedImageDataUrl;
+    });
   </script>
 </body>
 </html>
