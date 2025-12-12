@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <title>Left Banner Photo Replace</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
 
   <!-- Cropper CSS -->
   <link
@@ -238,24 +240,23 @@
     });
 
     // Download button
-    downloadBtn.addEventListener("click", async () => {
-      if (!croppedImageDataUrl) return;
+    // NEW Download button - html2canvas se exact layout capture
+downloadBtn.addEventListener("click", async () => {
+  const target = document.querySelector(".banner-container");
 
-      // Ensure font ready
-      await document.fonts.ready;
+  html2canvas(target, {
+    useCORS: true, // Rani.jpg, placeholder jaise external images ke liye
+    scale: 2       // high quality
+  }).then((canvas) => {
+    const finalImageUrl = canvas.toDataURL("image/png");
+    const link = document.createElement("a");
+    link.href = finalImageUrl;
+    link.download = "banner_exact_layout.png";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  });
 
-      // High DPI handling
-      const naturalW = mainBanner.naturalWidth;
-      const naturalH = mainBanner.naturalHeight;
-
-      const canvas = document.createElement("canvas");
-      const scale = window.devicePixelRatio || 1;
-
-      canvas.width = naturalW * scale;
-      canvas.height = naturalH * scale;
-
-      const ctx = canvas.getContext("2d");
-      ctx.scale(scale, scale);
 
       // Draw main banner
       ctx.drawImage(mainBanner, 0, 0, naturalW, naturalH);
