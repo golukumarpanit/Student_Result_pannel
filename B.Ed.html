@@ -46,16 +46,38 @@
     }
 
     /* Left photo responsive */
+    /* Default: PC / large screens */
     #left-photo {
       position: absolute;
       left: -1px;
       top: 280px;
-      width: 180px;
-      height: 230px;
+      width: 160px;
+      height: 190px;   /* PC par fixed height */
       border-radius: 5px;
       object-fit: cover;
       border: 2px solid black;
     }
+
+    /* Mobile: 600px se chhota screen (Android, etc.) */
+  @media (max-width: 600px) {
+    #left-photo {
+      position: absolute;
+      left: -1px;
+      top: 280px;
+      width: 160px;
+      height: 190px;
+      border-radius: 5px;
+      object-fit: cover;
+      border: 2px solid black;
+    }
+
+    .internub {
+      font-size: 26px;
+      top: 70%;
+    }
+  }
+
+
 
     #preview-img {
       display: none;
@@ -81,13 +103,22 @@
       background: #fff;
     }
 
-    .internub {
+    /* Impact ko web-font ke रूप में load karo */
+@font-face {
+  font-family: "MyImpact";
+  src: url("impact.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+}
+
+/* Number text ke liye font hamesha Impact जैसा रहे */
+.internub {
   position: absolute;
   width: 100%;
   top: 20%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-family: "Montserrat", Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-family: "MyImpact", Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
   font-size: 4vw;
   font-weight: 700;
   color: rgb(234, 14, 14);
@@ -99,31 +130,21 @@
 
 
 
-    .radhe {
-      font-size: 20px;
-      margin: 5px 0;
-    }
 
-    .radhe-input {
-      font-size: 20px;
-      padding: 5px 8px;
-      width: 100%;
-      max-width: 500px;
-      box-sizing: border-box;
-    }
+  .radhe {
+    font-size: 20px;
+    margin: 5px 0;
+  }
 
-    @media (max-width: 600px) {
-      .internub {
-        font-size: 26px;
-        top: 70%;
-      }
+  .radhe-input {
+    font-size: 20px;
+    padding: 5px 8px;
+    width: 100%;
+    max-width: 500px;
+    box-sizing: border-box;
+  }
 
-      #left-photo {
-        top: 40%;
-        width: 28%;
-        height: auto;
-      }
-    }
+    
   </style>
 </head>
 <body>
@@ -257,50 +278,7 @@ downloadBtn.addEventListener("click", async () => {
     document.body.removeChild(link);
   });
 
-
-      // Draw main banner
-      ctx.drawImage(mainBanner, 0, 0, naturalW, naturalH);
-
-      // Prepare cropped image
-      const croppedImg = new Image();
-      croppedImg.onload = () => {
-        const rect = bannerContainer.getBoundingClientRect();
-        const scaleX = naturalW / rect.width;
-        const scaleY = naturalH / rect.height;
-
-        // Left photo position/size in canvas
-        const posX = leftPhoto.offsetLeft * scaleX;
-        const posY = leftPhoto.offsetTop * scaleY;
-        const width = leftPhoto.clientWidth * scaleX;
-        const height = leftPhoto.clientHeight * scaleY;
-
-        ctx.drawImage(croppedImg, posX, posY, width, height);
-
-        // Text position from DOM
-        const textRect = krishnaSpan.getBoundingClientRect();
-        const textX =
-          (textRect.left + textRect.width / 2 - rect.left) * scaleX;
-        const textY = (textRect.top + textRect.height - rect.top) * scaleY;
-
-        // Text style
-        ctx.font =
-          "700 40px Montserrat, Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif";
-        ctx.fillStyle = "black";
-        ctx.textAlign = "center";
-        ctx.textBaseline = "bottom";
-        ctx.fillText(krishnaSpan.textContent, textX, textY);
-
-        // Download image
-        const finalImageUrl = canvas.toDataURL("image/png");
-        const link = document.createElement("a");
-        link.href = finalImageUrl;
-        link.download = "banner_with_cropped_image.png";
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-      };
-      croppedImg.src = croppedImageDataUrl;
-    });
+});
   </script>
 </body>
 </html>
