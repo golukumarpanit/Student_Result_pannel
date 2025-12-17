@@ -7,6 +7,7 @@
     .header{
       display: flex;
       width: 100%;
+      min-width: 100%;
       height: 40PX;
       background-color: #5d18a2;
       margin-bottom: 10px;
@@ -14,45 +15,82 @@
       margin: 0;
       
     }
-    .allbutton{
+    .allbutton {
       display: flex;
-    position: relative;
-    flex-direction: row;
-    width: 100%;
-    height: auto;
-    padding: 5px 10px;
-    align-items: center;
-    align-self: stretch;
-    padding: 0 10px;
-    border-radius: 0.25rem;
-    overflow-y: auto;
-    padding: 0 5px;
-    border-radius: 0;
-      
+      flex-direction: row;
+      width: 100%;
+      height: auto;
+      padding: 5px 10px;
+      align-items: center;
+      overflow-x: auto;
+      overflow-y: hidden;
+      gap: 10px;
+      scrollbar-width: thin;
+      scrollbar-color: transparent transparent;
+      -webkit-overflow-scrolling: touch;
     }
-    .buttom{
-      font-size: 12pt;
-      margin: 10px;
-      color: rgb(188, 5, 5);
-      font-weight: bold;       /* <-- semicolon लगाया */
-      text-decoration: none;
 
-      
+    .allbutton::-webkit-scrollbar {
+      height: 4px;
     }
+
+    .allbutton::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .allbutton::-webkit-scrollbar-thumb {
+      background: rgba(255,255,255,0.3);
+      border-radius: 2px;
+    }
+
+    .allbutton::-webkit-scrollbar-thumb:hover {
+      background: rgba(255,255,255,0.5);
+    }
+
+    .buttom {
+      font-size: 12pt;
+      margin: 0;
+      color: white;
+      font-weight: bold;
+      text-decoration: none;
+      white-space: nowrap;
+      flex-shrink: 0;
+      padding: 8px 16px;
+    }
+    @media (max-width: 480px) {
+      .header {
+        height: 50px;
+        padding: 0 5px;
+      }
+      
+      .allbutton {
+        padding: 5px;
+        gap: 8px;
+      }
+      
+      .buttom {
+        font-size: 11pt;
+        padding: 6px 12px;
+      }
+    }
+
+
     .context{
       position: fixed;
-      top: 0;
-      right: 0;
-      left: 0;
+      top: 50%;              /* viewport ka 50% */
+      left: 50%;
+      transform: translate(-50%, -50%); /* exactly center */
       z-index: 10;
-      padding: 5px 10px;
-      height: 114px;
       box-shadow: 0.25px 0.5px 5px rgba(0, 0, 0, 0.36);
       background: #fff;
-      height: 90px;
-      padding: 0;
+      padding: 20px;         /* thoda space */
+      width: 90%;            /* mobile friendly */
+      max-width: 600px;      /* desktop limit */
+      height: 100%;  
+       
       
     }
+
 
 
     body {
@@ -64,17 +102,20 @@
       
     }
 
-    .panel {
-      width: 400px;
-      
-      
-      background: white;
-      margin-top: 40px;
-      padding: 30px;      
-      border: solid rgb(179, 176, 176) 1px;
-      box-shadow: 0px 10px 40px rgba(2, 1, 1, 0.2);
+    
+    .panel{
+      display: flex;
+      position: relative;
+      flex-direction: column;
+      width: 100%;
+      height: auto;
+      max-width: 250px;
+      padding: 0.875rem;
+      margin: 0 auto;
+      background: #fff;
+      box-shadow: 0.25px 0.5px 5px rgba(0, 0, 0, 0.36);
       text-align: center;
-    }
+      }
 
     .panel h2 {
       margin-bottom: 20px;
@@ -202,7 +243,55 @@
   }
 }
 
-/* Optional: hover pause */
-.context__inner:hover {
-  animation-play-state: paused;
+.context__inner {
+  width: 100%;
+  overflow: hidden;       /* text bahar na dikhe */
+  position: relative;
+  height: 50px;
+  display: flex;
+  align-items: center;
+}
+
+/* Marquee wrapper */
+.marquee {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Moving text */
+.company-title {
+  display: inline-block;
+  white-space: nowrap;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 1.25rem;
+  color: #5d18a2;
+
+  /* Yahi animation apply ho raha hai */
+  animation: move-left 10s linear infinite;
+}
+
+/* Right se left animation */
+@keyframes move-left {
+  0% {
+    transform: translateX(100%);    /* right ke bahar se start */
+  }
+  100% {
+    transform: translateX(-100%);   /* left ke bahar chala jaye */
+  }
+}
+
+/* Mobile ke liye thoda adjust */
+@media (max-width: 480px) {
+  .company-title {
+    font-size: 1rem;
+    animation-duration: 8s; /* speed change kar sakte ho */
+  }
+}
+
+.Results{
+  text-align: center;
+  font-size: 25pt;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
