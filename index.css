@@ -76,7 +76,7 @@
 
 
     .context{
-      position: fixed;
+      position: absolute;
       top: 50%;              /* viewport ka 50% */
       left: 50%;
       transform: translate(-50%, -50%); /* exactly center */
@@ -85,7 +85,7 @@
       background: #fff;
       /* padding: 20px;         thoda space */
       width: 100%;            /* mobile friendly */
-      max-width: 600px;      /* desktop limit */
+      /* max-width: 600px;      desktop limit */
       height: 100%;  
        
       
@@ -237,10 +237,12 @@
   100% { transform: translateX(-50%); } /* half width shift because duplicated */
 }
 
+
 /* Responsive adjustments */
 @media (max-width: 480px) {
   .context {
     font-size: 16px;
+    height: 100%;
   }
   .context__inner {
     animation-duration: 10s;
@@ -289,7 +291,7 @@
 /* Mobile ke liye thoda adjust */
 @media (max-width: 480px) {
   .company-title {
-    font-size: 1rem;
+    font-size: 1.25rem;
     animation-duration: 8s; /* speed change kar sakte ho */
   }
 }
@@ -298,4 +300,16 @@
   text-align: center;
   font-size: 25pt;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.adca-box-merge {
+  display: flex;           /* Desktop: horizontal */
+  gap: 10px;               /* spacing between panels */
+}
+
+@media (max-width: 480px) {
+  .adca-box-merge {
+    flex-direction: column;  /* Mobile: vertical stack */
+    gap: 15px;              /* थोड़ा ज्यादा spacing */
+  }
 }

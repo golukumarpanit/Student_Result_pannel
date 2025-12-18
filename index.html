@@ -33,73 +33,67 @@
   <div class="Results">Results</div> 
   
   <!-- yaha se pannel chal rha hai -->
-  <div class="panel">
-    <div class="panel-container">
-      <div class="input-box">
-        <label class="swag" for="course">ADVANCE DIPLOMA IN <br> COMPUTER APPLICATION <br> (ADCA)</label>
-        <select id="course">
-          <!-- <option value="">-- Choose Course --</option> -->
-          <option value="adca">ADCA</option>
-          <!-- <option value="typing2024">TYPING</option> -->
-          <!-- <option value="Marksheets">Marksheet</option> -->
+   <div class="adca-box-merge">
+      <div class="panel">
+        <div class="panel-container">
+          <div class="input-box">
+            <label class="swag" for="course">ADVANCE DIPLOMA IN <br> COMPUTER APPLICATION <br> (ADCA)</label>
+            <select id="course" hidden>          
+              <option value="adca" >ADCA</option>
+            </select>      
+          </div>
           
-        </select>      
+          <div class="input-box">
+            <label for="YEAR">Choose Batch</label>
+            <select id="Session">
+              <!-- <option value="">-- Choose Year --</option> -->
+              <option value="2024">2024</option>
+              <option value="2025">2025</option>
+              
+            </select>      
+          </div>
+
+          <div class="input-box">
+            <label for="rollNo">Enter Roll Number</label>
+            <input type="text" id="rollNo" placeholder="Enter Roll Number">
+          </div>
+
+        </div>
+        <button class="btn search-btn" onclick="searchRoll()">Check Result</button>
       </div>
-      
-      <div class="input-box">
-        <label for="YEAR">Choose Batch</label>
-        <select id="Session">
-          <!-- <option value="">-- Choose Year --</option> -->
-          <option value="2024">2024</option>
-          <option value="2025">2025</option>
+
+
+      <!-- yaha tak pannel me chal rha hai  -->
+    
+      <!-- yaha se typing chal rha hai -->
+      <div class="panel">
+        <div class="panel-container">
+          <div class="input-box">
+            <label class="swag" for="course">HINDI & ENGLISH TYPING (HETYP) <br>   </label>
+            <select id="course" hidden>          
+              <option value="typing2024">TYPING</option>
+              <!-- <option value="Marksheets">Marksheet</option> -->          
+            </select>      
+          </div>
           
-        </select>      
+          <div class="input-box">
+            <label for="YEAR">Choose Batch</label>
+            <select id="Session">                   
+              <option value="2024">2024</option>
+              <option value="2025">2025</option>
+              
+            </select>      
+          </div>
+
+          <div class="input-box">
+            <label for="rollNo">Enter Roll Number</label>
+            <input type="text" id="rollNo" placeholder="Enter Roll Number">
+          </div>
+
+        </div>
+        <button class="btn search-btn" onclick="searchRoll()">Check Result</button>
       </div>
-
-      <div class="input-box">
-        <label for="rollNo">Enter Roll Number</label>
-        <input type="text" id="rollNo" placeholder="Enter Roll Number">
-      </div>
-
-    </div>
-    <button class="btn search-btn" onclick="searchRoll()">Check Result</button>
-  </div>
-
-
-  <!-- yaha tak pannel me chal rha hai  -->
-<br><br>
-  <!-- yaha se typing chal rha hai -->
-   <div class="panel">
-    <div class="panel-container">
-      <div class="input-box">
-        <label class="swag" for="course">HINDI & ENGLISH TYPING (HETYP) <br>   </label>
-        <select id="course">
-          <!-- <option value="">-- Choose Course --</option> -->
-          <!-- <option value="adca">ADCA</option> -->
-          <option value="typing2024">TYPING</option>
-          <!-- <option value="Marksheets">Marksheet</option> -->
-          
-        </select>      
-      </div>
-      
-      <div class="input-box">
-        <label for="YEAR">Choose Batch</label>
-        <select id="Session">
-          <!-- <option value="">-- Choose Year --</option> -->
-          <option value="2024">2024</option>
-          <option value="2025">2025</option>
-          
-        </select>      
-      </div>
-
-      <div class="input-box">
-        <label for="rollNo">Enter Roll Number</label>
-        <input type="text" id="rollNo" placeholder="Enter Roll Number">
-      </div>
-
-    </div>
-    <button class="btn search-btn" onclick="searchRoll()">Check Result</button>
-  </div>
+    </div><!--Ye adca-box-merge closer hai -->
   <!-- yaha tak typing coureses tak hai  -->
   </div><!--Ye context closer hai -->
 
