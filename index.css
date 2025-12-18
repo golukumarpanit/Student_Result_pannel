@@ -103,19 +103,18 @@
     }
 
     
-    .panel{
-      display: flex;
-      position: relative;
-      flex-direction: column;
-      width: 100%;
-      height: auto;
-      max-width: 250px;
-      padding: 0.875rem;
-      margin: 0 auto;
-      background: #fff;
-      box-shadow: 0.25px 0.5px 5px rgba(0, 0, 0, 0.36);
-      text-align: center;
-      }
+    /* Panel individual settings */
+  .panel {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 280px; /* Fixed width */
+    padding: 0.875rem;
+    background: #fff;
+    box-shadow: 0.25px 0.5px 5px rgba(0, 0, 0, 0.36);
+    text-align: center;
+    flex: 1; /* Equal width */
+  }
 
     .panel h2 {
       margin-bottom: 20px;
@@ -302,14 +301,158 @@
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
+/* Panel को Perfect Center करने के लिए */
 .adca-box-merge {
-  display: flex;           /* Desktop: horizontal */
-  gap: 10px;               /* spacing between panels */
+  display: flex;
+  justify-content: center; /* PC पर center */
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  max-width: 800px; /* Limit width */
+  margin: 20px auto;             /* ← Perfect centering */
 }
 
 @media (max-width: 480px) {
   .adca-box-merge {
     flex-direction: column;  /* Mobile: vertical stack */
     gap: 15px;              /* थोड़ा ज्यादा spacing */
+  }
+}
+.ourservice{
+  background-color: rgb(85, 85, 207);
+  width: 100%;
+  height: 1000px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;  
+  align-items: center; /* Center children horizontally */
+  margin: 0 auto;
+  
+  
+}
+.ourservice_context{
+  border-top: black 2px;
+  background-color: rgb(248, 245, 242);
+  width: 80%;
+  height: 700px;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+}
+.ourservice_context_R{
+  background-color: red;
+  width: 80%;
+  height: 300px;
+
+}
+.box_container {
+  height: 200px;
+  width: 400px;   
+  border-radius: 10px;
+  background-color: white;
+  box-shadow: 
+    0 6px 8px rgba(0, 0, 0, 0.2),
+    0 6px 4px rgba(0, 0, 0, 0.1);
+  margin: 10px;
+  justify-content: center;
+  text-align: center;  
+  align-content: center;
+  color: red;
+}
+/* Box Row को Perfect Responsive बनाएं */
+.box-row {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  width: 100%;
+  flex-wrap: wrap; /* Extra responsive */
+}
+
+
+/* Complete Mobile Responsive */
+@media (max-width: 768px) {
+  .ourservice {
+    height: auto; /* Fixed height remove */
+    padding: 20px 0;
+  }
+  
+  .ourservice_context {
+    width: 95%;
+    height: auto;
+    padding: 15px;
+    gap: 15px;
+  }
+  
+  .box-row {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+  }
+  
+  .box_container {
+    width: 100%; /* Full width */
+    max-width: 320px;
+    height: 180px; /* Slightly smaller */
+    margin: 0 !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .Results {
+    font-size: 20pt;
+  }
+  
+  .adca-box-merge {
+    flex-direction: column;
+    gap: 20px;
+    padding: 0 10px;
+  }
+  
+  .panel {
+    max-width: 100%;
+    width: 100%;
+  }
+  
+  .context {
+    position: relative; /* Absolute se relative */
+    top: 0;
+    left: 0;
+    transform: none;
+    width: 100%;
+    height: auto;
+    padding: 10px;
+  }
+}
+
+/* Tablet Responsive */
+/* PC पर perfect spacing */
+@media (min-width: 769px) {
+  .adca-box-merge {
+    justify-content: center;
+    gap: 30px; /* More space on desktop */
+  }
+  
+  .panel {
+    max-width: 300px;
+  }
+}
+
+/* Mobile पर stack */
+@media (max-width: 768px) {
+  .adca-box-merge {
+    flex-direction: column;
+    gap: 20px;
+    padding: 0 15px;
+    max-width: none;
+  }
+  
+  .panel {
+    max-width: 100%;
+    width: 100%;
   }
 }
