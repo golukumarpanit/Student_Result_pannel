@@ -1,49 +1,46 @@
-function searchRoll() {
-    let course = document.getElementById("course").value;
-    let session = document.getElementById("Session").value;
-    let roll = document.getElementById("rollNo").value.trim();
+// ADCA के लिए
+function searchADCA() {
+    const course = document.getElementById("adca-course").value;
+    const session = document.getElementById("adca-session").value;
+    const roll = document.getElementById("adca-rollNo").value.trim();
+    
+    validateAndOpen(course, session, roll);
+}
 
-    if (course === "") {
-      alert("⚠️ Please select a course!");
-      return;
-    }
-    if (session === "") {
-      alert("⚠️ Please select a session year!");
-      return;
-    }
-    if (roll === "") {
-      alert("⚠️ Please enter Roll Number!");
-      return;
-    }
+// Typing के लिए  
+function searchTyping() {
+    const course = document.getElementById("typing-course").value;
+    const session = document.getElementById("typing-session").value;
+    const roll = document.getElementById("typing-rollNo").value.trim();
+    
+    validateAndOpen(course, session, roll);
+}
 
+// Marksheet के लिए
+function searchMarksheet() {
+    const course = document.getElementById("marksheet-course").value;
+    const session = document.getElementById("marksheet-session").value;
+    const roll = document.getElementById("marksheet-rollNo").value.trim();
+    
+    validateAndOpen(course, session, roll);
+}
+
+// Common validation + URL generation
+function validateAndOpen(course, session, roll) {
+    if (!course) { alert("⚠️ Course select करें!"); return; }
+    if (!session) { alert("⚠️ Batch select करें!"); return; }
+    if (!roll) { alert("⚠️ Roll Number डालें!"); return; }
+    
     let url = "";
-
-    // Condition check
-    if (course === "adca" && session === "2024") {
-      url = "ADCA2024.html?roll=" + encodeURIComponent(roll);
-    } 
-    else if (course === "adca" && session === "2025") {
-      url = "ADCA2025.html?roll=" + encodeURIComponent(roll);
-    } 
-    else if (course === "typing2024" && session === "2024") {
-      url = "Typing24.html?roll=" + encodeURIComponent(roll);
-    } 
-    else if (course === "typing2024" && session === "2025") {
-      url = "Typing25.html?roll=" + encodeURIComponent(roll);
-    }
-    else if (course === "Marksheets" && session === "2024") {
-      url = "marksheets.html?roll=" + encodeURIComponent(roll);
-    }
-    // yaha se 2025 ka marksheet bana hai 
-    else if( course === "Marksheets" && session === "2025"){
-      url = "https://marksheets2024.netlify.app/mark2025?roll=" + encodeURIComponent(roll);     
+    if (course === "adca") {
+        url = `ADCA${session}.html?roll=${encodeURIComponent(roll)}`;
+    } else if (course === "typing2024") {
+        url = `Typing${session.slice(2)}5.html?roll=${encodeURIComponent(roll)}`;
+    } else if (course === "Marksheets") {
+        url = session === "2025" ? 
+            "https://marksheets2024.netlify.app/mark2025?roll=" + encodeURIComponent(roll) :
+            "marksheets.html?roll=" + encodeURIComponent(roll);
     }
     
-    else {
-      alert("⚠️ No page set for this combination!");
-      return;
-    }
-
-    // Open in new tab
     window.open(url, "_blank");
-  }
+}

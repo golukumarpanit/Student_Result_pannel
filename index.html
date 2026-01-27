@@ -23,7 +23,7 @@
 
   <div class="header">
     <div class="allbutton">
-      <a href="https://www.gcsm.net.in/" class="buttom" target="_blank">HOME</a>
+      <a href="https://gcsmweb.netlify.app/" class="buttom" target="_blank">HOME</a>
       <a href="https://classplusapp.com/w/gcsmcomputereducation" class="buttom" target="_blank">COURSES</a>
       <a href="about.html" class="buttom" target="_blank">ABOUT US</a>
       <a href="https://www.gcsm.net.in/results" class="buttom" target="_blank">RESULTS 2023</a>  
@@ -34,12 +34,13 @@
   
   <!-- yaha se pannel chal rha hai -->
    <div class="adca-box-merge">
+    <!-- ----ADCA---- -->
       <div class="panel">
         <div class="panel-container">
           <div class="input-box">
             <label class="swag" for="course">ADVANCE DIPLOMA IN <br> COMPUTER APPLICATION <br> (ADCA)</label>
-            <select id="course" hidden>          
-              <option value="adca" >ADCA</option>
+            <select id="ADCA-COURSES" hidden>          
+              <option value="adca"> ADCA </option>
             </select>      
           </div>
           
@@ -59,20 +60,19 @@
           </div>
 
         </div>
-        <button class="btn search-btn" onclick="searchRoll()">Check Result</button>
+        <!-- ADCA Button -->
+        <button class="btn search-btn" onclick="searchADCA()">Check Result</button>>
       </div>
-
-
       <!-- yaha tak pannel me chal rha hai  -->
     
-      <!-- yaha se typing chal rha hai -->
+    <!-- TYPING -->
       <div class="panel">
         <div class="panel-container">
           <div class="input-box">
             <label class="swag" for="course">HINDI & ENGLISH TYPING (HETYP) <br>   </label>
-            <select id="course" hidden>          
+            <select id="TYPING-COURSES" hidden>          
               <option value="typing2024">TYPING</option>
-              <!-- <option value="Marksheets">Marksheet</option> -->          
+                        
             </select>      
           </div>
           
@@ -91,9 +91,43 @@
           </div>
 
         </div>
-        <button class="btn search-btn" onclick="searchRoll()">Check Result</button>
+        <!-- Typing Button -->
+        <button class="btn search-btn" onclick="searchTyping()">Check Result</button>
       </div>
+
+    <!-- MARKSHEETS  -->
+      <div class="panel">
+        <div class="panel-container">
+          <div class="input-box">
+            <label class="swag" for="course"> MARKSHEET </label>
+            <select id="MARKSHEETS-COURSES" hidden>    
+              <option value="Marksheets">Marksheet</option>
+            </select>      
+          </div>
+          
+          <div class="input-box">
+            <label for="YEAR">Choose Batch</label>
+            <select id="Session">
+              <!-- <option value="">-- Choose Year --</option> -->
+              <option value="2024">2024</option>
+              <option value="2025">2025</option>
+              
+            </select>      
+          </div>
+
+          <div class="input-box">
+            <label for="rollNo">Enter Roll Number</label>
+            <input type="text" id="rollNo" placeholder="Enter Roll Number">
+          </div>
+
+        </div>
+        <!-- Marksheet Button -->
+      <button class="btn search-btn" onclick="searchMarksheet()">Check Result</button>
+      </div> <!-- ye hai marksheet ka code hai  -->      
+
     </div><!--Ye adca-box-merge closer hai -->
+
+
   <!-- yaha tak typing coureses tak hai  -->
     <div class="ourservice">
       <div class="ourservice_context">
