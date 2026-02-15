@@ -1,6 +1,6 @@
 // ADCA के लिए
 function searchADCA() {
-    const course = document.getElementById("adca-course").value;
+    const course = document.getElementById("ADCA-COURSES").value;
     const session = document.getElementById("adca-session").value;
     const roll = document.getElementById("adca-rollNo").value.trim();
     
@@ -34,8 +34,12 @@ function validateAndOpen(course, session, roll) {
     let url = "";
     if (course === "adca") {
         url = `ADCA${session}.html?roll=${encodeURIComponent(roll)}`;
+
+        // Ye Url Kam nhi kr rha hai
     } else if (course === "typing2024") {
-        url = `Typing${session.slice(2)}5.html?roll=${encodeURIComponent(roll)}`;
+        url = `typing${session.slice(2)}.html?roll=${encodeURIComponent(roll)}`;
+        // Yaha se Upar me update krna hai
+        
     } else if (course === "Marksheets") {
         url = session === "2025" ? 
             "https://marksheets2024.netlify.app/mark2025?roll=" + encodeURIComponent(roll) :
