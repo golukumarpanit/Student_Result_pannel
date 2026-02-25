@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <title>Left Banner Photo Replace</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+
+  <!-- Cropper CSS -->
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css"
+    rel="stylesheet"
+  />
+
+  <!-- Google Fonts से Montserrat मोटा फॉन्ट इंपोर्ट -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    body {
+      background: #eee;
+      padding: 20px;
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .banner-container {
+      position: relative;
+      width: 100%;
+      max-width: 1000px;
+    }
+
+    #main-banner {
+      width: 100%;
+      display: block;
+    }
+
+    /* Left photo responsive */
+    /* Default: PC / large screens */
+    #left-photo {
+      position: absolute;
+      left: -1px;
+      top: 280px;
+      width: 165px;
+      height: 195px;   /* PC par fixed height */
+      border-radius: 5px;
+      object-fit: cover;
+      border: 2px solid black;
+    }
+
+    /* Mobile: 600px se chhota screen (Android, etc.) */
+  @media (max-width: 600px) {
+    #left-photo {
+      position: absolute;
+      left: -1px;
+      top: 280px;
+      width: 160px;
+      height: 190px;
+      border-radius: 5px;
+      object-fit: cover;
+      border: 2px solid black;
+    }
+
+    .internub {
+      font-size: 26px;
+      top: 70%;
+    }
+  }
+
+
+
+    #preview-img {
+      display: none;
+      max-width: 400px;
+    }
+
+    #upload-box {
+      margin: 20px 0;
+    }
+
+    #download-btn {
+      display: none;
+      margin: 10px 0;
+    }
+
+    .pagefirst {
+      width: 100%;
+      max-width: 1000px;
+      border: solid black 2px;
+      padding: 15px;
+      box-sizing: border-box;
+      margin-top: 20px;
+      background: #fff;
+    }
+
+    /* Impact ko web-font ke रूप में load karo */
+@font-face {
+  font-family: "MyImpact";
+  src: url("impact.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+}
+
+/* Number text ke liye font hamesha Impact जैसा रहे */
+.internub {
+  position: absolute;
+  width: 100%;
+  top: 95%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: "MyImpact", Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-size: 4vw;
+  font-weight: 700;
+  color: rgb(234, 14, 14);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+}
+
+
+
+
+  .radhe {
+    font-size: 20px;
+    margin: 5px 0;
+  }
+
+  .radhe-input {
+    font-size: 20px;
+    padding: 5px 8px;
+    width: 100%;
+    max-width: 500px;
+    box-sizing: border-box;
+  }
+
+    
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="banner-container">
+      <img src="G_Holi.jpg" id="main-banner" alt="Banner Image" />
+      <img
+        id="left-photo"
+        src="https://via.placeholder.com/230x270.png?text=Upload+Photo"
+        alt="Left Photo"
+      />
+      <div class="internub">
+        <span class="" id="Krishna">9852875207</span>
+      </div>
+    </div>
+
+    <div class="pagefirst">
+      <h2>Left Photo Replace & Crop Demo</h2>
+
+      <label class="radhe" for="Mobile">Name &amp; Mobile</label>
+      <input
+        class="radhe-input"
+        type="text"
+        name="Mobile"
+        id="Mobile"
+        placeholder="Name & Mobile Type Here"
+      />
+
+      <div id="upload-box" class="radhe">
+        <input class="radhe" type="file" id="img-upload" accept="image/*" />
+        <button class="radhe" id="crop-btn" style="display: none">
+          क्रॉप करें
+        </button>
+        <button class="radhe" id="apply-btn" style="display: none">
+          बैनर में लगाएं
+        </button>
+        <button class="radhe" id="download-btn" style="display: none">
+          इमेज डाउनलोड करें
+        </button>
+      </div>
+
+      <img id="preview-img" />
+    </div>
+  </div>
+
+  <!-- Cropper JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
+
+  <script>
+    let cropper;
+    let croppedImageDataUrl = null;
+
+    const imgUpload = document.getElementById("img-upload");
+    const previewImg = document.getElementById("preview-img");
+    const cropBtn = document.getElementById("crop-btn");
+    const applyBtn = document.getElementById("apply-btn");
+    const leftPhoto = document.getElementById("left-photo");
+    const downloadBtn = document.getElementById("download-btn");
+    const mobileInput = document.getElementById("Mobile");
+    const krishnaSpan = document.getElementById("Krishna");
+    const mainBanner = document.getElementById("main-banner");
+    const bannerContainer = document.querySelector(".banner-container");
+
+    // Text live update
+    mobileInput.addEventListener("input", () => {
+      krishnaSpan.textContent = mobileInput.value || "9852875207";
+    });
+
+    // Image upload + cropper init
+    imgUpload.addEventListener("change", (e) => {
+      const file = e.target.files[0];
+      if (file) {
+        previewImg.src = URL.createObjectURL(file);
+        previewImg.style.display = "block";
+
+        cropBtn.style.display = "inline-block";
+
+        if (cropper) cropper.destroy();
+        cropper = new Cropper(previewImg, {
+          viewMode: 1,
+        });
+      }
+    });
+
+    // Crop button
+    cropBtn.addEventListener("click", () => {
+      if (cropper) {
+        const canvas = cropper.getCroppedCanvas({ width: 180, height: 230 });
+        croppedImageDataUrl = canvas.toDataURL();
+        previewImg.src = croppedImageDataUrl;
+        applyBtn.style.display = "inline-block";
+        downloadBtn.style.display = "inline-block";
+      }
+    });
+
+    // Apply to banner
+    applyBtn.addEventListener("click", () => {
+      leftPhoto.src = previewImg.src;
+      previewImg.style.display = "none";
+      cropBtn.style.display = "none";
+      applyBtn.style.display = "none";
+      imgUpload.value = "";
+    });
+
+    // FontFace load (for canvas text)
+    const loadMont = new FontFace(
+      "Montserrat",
+      "url(https://fonts.gstatic.com/s/montserrat/v26/JTUQjIg1_i6t8kCHKm45_Qphzf7z.woff2)",
+      { weight: "700", style: "normal" }
+    );
+
+    loadMont.load().then(function (loadedFont) {
+      document.fonts.add(loadedFont);
+    });
+
+    // Download button
+    // NEW Download button - html2canvas se exact layout capture
+downloadBtn.addEventListener("click", async () => {
+  const target = document.querySelector(".banner-container");
+
+  html2canvas(target, {
+    useCORS: true, // Rani.jpg, placeholder jaise external images ke liye
+    scale: 2       // high quality
+  }).then((canvas) => {
+    const finalImageUrl = canvas.toDataURL("image/png");
+    const link = document.createElement("a");
+    link.href = finalImageUrl;
+    link.download = "banner_exact_layout.png";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  });
+
+});
+  </script>
+</body>
+</html>
